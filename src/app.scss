@@ -1,0 +1,22 @@
+.conteudo-principal {
+    display: flex;
+    background-color: #303136;
+
+    .conteudo-esquerdo {
+        // max-width: 50%;
+
+        background-color: #303136;
+        height: 100dvh;
+
+        flex: 0.8;
+    }
+
+    .conteudo-direito {
+        padding: 20px 30px;
+        background-color: #1b1b1b;
+        height: 100dvh;
+        border-radius: 15px 0px 0 15px;
+
+        flex: 1;
+    }
+}
