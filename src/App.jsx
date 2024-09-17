@@ -41,7 +41,7 @@ export function App() {
       {modalIsOpen && (
         <div className="container-modal">
           <div className="modal">
-            <h2>Cadastro visita</h2>
+            <h2 className="titulo-modal">Cadastro visita</h2>
 
             <BiX className="close-icon" onClick={fecharModal} />
           </div>

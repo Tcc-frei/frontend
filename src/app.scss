@@ -32,7 +32,7 @@ main {
 
     .titulo-visita {
       text-transform: uppercase;
-      font-family: "Montserrat";
+      font: 500 25px "Rubik";
     }
 
     .btn-visita {
@@ -40,7 +40,7 @@ main {
       border: none;
       background-color: transparent;
       color: black;
-      font-family: "Montserrat";
+      font: 400 15px "Rubik";
       padding: 10px;
 
       text-transform: uppercase;
@@ -49,11 +49,13 @@ main {
       align-items: center;
       gap: 5px;
 
-      transition: all 0.43s;
+      transition: all 0.35s;
+      border-radius: 5px;
 
       &:hover {
         // opacity: 0.5;
-        background-color: #f1f1f1;
+        background-color: #a3e635;
+        // color: white;
       }
     }
   }
@@ -97,8 +99,8 @@ main {
         }
       }
 
-      h2 {
-        font: 500 20px "Rubik";
+      .titulo-modal {
+        font: 500 18px "Rubik";
         text-transform: uppercase;
       }
     }
