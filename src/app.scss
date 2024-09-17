@@ -57,4 +57,50 @@ main {
       }
     }
   }
+
+  .container-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    min-height: 100dvh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modal {
+      min-width: 620px;
+      background-color: #303136;
+      padding: 20px;
+      border-radius: 5px;
+      position: relative;
+      color: white;
+
+      .close-icon {
+        position: absolute;
+        right: 8px;
+        top: 15px;
+        font-size: 25px;
+        color: white;
+        height: 25px;
+        width: 25px;
+
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.42s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+      }
+
+      h2 {
+        font: 500 20px "Rubik";
+        text-transform: uppercase;
+      }
+    }
+  }
 }
