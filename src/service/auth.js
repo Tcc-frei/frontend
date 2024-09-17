@@ -8,7 +8,6 @@ export function entrar(email, senha) {
 
   } catch (error) {
     console.error(error)
-    throw new Error(error)
   }
 }
 
