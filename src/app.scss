@@ -1,4 +1,4 @@
-main {
+.pagina-visita {
   background-color: #f8f9fa;
   min-height: 100dvh;
 
@@ -104,5 +104,63 @@ main {
         text-transform: uppercase;
       }
     }
+  }
+
+  .container-visitas {
+    padding: 2% 5%;
+    display: flex;
+    justify-content: space-between;
+
+    .visitas {
+      .txt-confirmada {
+        font: 400 15px "Rubik";
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          background-color: #80ed99;
+          display: block;
+          border-radius: 50%;
+
+          animation: animate-outline 1s infinite;
+        }
+      }
+
+      .txt-finalizado {
+        font: 400 15px "Rubik";
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          background-color: #585858;
+          display: block;
+          border-radius: 50%;
+        }
+      }
+
+      .container-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+@keyframes animate-outline {
+  from {
+    outline: 0px solid #80ed99;
+  }
+  to {
+    outline: 10px solid #4f9bf900;
   }
 }

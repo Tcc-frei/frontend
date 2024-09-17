@@ -1,0 +1,56 @@
+.card {
+  padding: 20px;
+  border-radius: 4px;
+  background-color: #303136;
+  max-width: 300px;
+  color: white;
+  border-left: 5px solid #80ed99;
+  transition: all 0.25s;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateX(2px);
+    // box-shadow: 5px 2px 4px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .info-cliente {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .nome-cliente {
+      font: 400 13px "Rubik";
+    }
+  }
+
+  .info-card {
+    margin-top: 10px;
+    flex: 1;
+
+    .desc-card {
+      font: 400 14px "Rubik";
+      color: #d1d1d1;
+    }
+  }
+
+  .btn-cancelar {
+    display: flex;
+    align-items: self-end;
+    font: 400 14px "Rubik";
+    justify-content: flex-end;
+    width: fit-content;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    color: red;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    .icon-close {
+      font-size: 20px;
+    }
+  }
+}
