@@ -46,6 +46,35 @@ export function App() {
             <h2 className="titulo-modal">Cadastro visita</h2>
 
             <BiX className="close-icon" onClick={fecharModal} />
+
+            <div className="content-modal">
+              <form className="formulario">
+                <div className="grupo-input">
+                  <label htmlFor="nome">NOME CLIENTE</label>
+                  <input type="text" id="nome" />
+                </div>
+                <div className="grupo-input">
+                  <label htmlFor="bairro">BAIRRO</label>
+                  <input type="text" id="bairro" disabled />
+                </div>
+                <div className="grupo-input">
+                  <label htmlFor="nome">TELEFONE CLIENTE</label>
+                  <input type="text" id="nome" />
+                </div>
+                <div className="grupo-input">
+                  <label htmlFor="log">LOGRADOURO</label>
+                  <input type="text" id="log" disabled />
+                </div>
+                <div className="grupo-input">
+                  <label htmlFor="telefone">CEP CLIENTE</label>
+                  <input type="text" id="telefone" />
+                </div>
+                <div className="grupo-input">
+                  <label htmlFor="numero">N° CASA</label>
+                  <input type="text" id="numero" />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}

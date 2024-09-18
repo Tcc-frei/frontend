@@ -65,9 +65,10 @@
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.5);
     min-height: 100dvh;
     width: 100%;
+    z-index: 9999999;
 
     display: flex;
     align-items: center;
@@ -102,6 +103,39 @@
       .titulo-modal {
         font: 500 18px "Rubik";
         text-transform: uppercase;
+      }
+    }
+
+    .content-modal {
+      margin-top: 20px;
+
+      .formulario {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+
+        .grupo-input {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+
+          label {
+            font-family: "Rubik";
+
+            color: #d9d9d9;
+          }
+
+          input {
+            padding: 5px 10px;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            outline: none;
+            border-radius: 5px;
+            font: 400 16px "Rubik";
+
+            color: #d9d9d9;
+          }
+        }
       }
     }
   }
