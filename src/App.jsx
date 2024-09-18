@@ -59,7 +59,11 @@ export function App() {
               .filter((v) => v.status === "confirmado")
               .map((v) => {
                 return (
-                  <CardVisita cliente={v.nomeCliente} descricao={v.descricao} />
+                  <CardVisita
+                    cliente={v.nomeCliente}
+                    descricao={v.descricao}
+                    status={v.status}
+                  />
                 );
               })}
           </div>
@@ -73,7 +77,11 @@ export function App() {
               .filter((v) => v.status === "finalizado")
               .map((v) => {
                 return (
-                  <CardVisita cliente={v.nomeCliente} descricao={v.descricao} />
+                  <CardVisita
+                    cliente={v.nomeCliente}
+                    descricao={v.descricao}
+                    status={v.status}
+                  />
                 );
               })}
           </div>
