@@ -43,7 +43,11 @@ export function App() {
         logradouro: resposta.data.street,
       });
     } catch (error) {
-      console.log(error);
+      const { errors } = error.response.data;
+
+      console.log(errors);
+
+      console.log(error.response.data);
     }
   }
 
@@ -117,7 +121,7 @@ export function App() {
                 </div>
 
                 <button type="button" className="btn-proximo">
-                  Próximo <BsArrowRight />
+                  Próximo
                 </button>
               </form>
             </div>
