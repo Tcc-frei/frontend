@@ -20,10 +20,6 @@ export function CardVisita({ cliente, descricao, status }) {
 
       <div className="info-card">
         <p className="desc-card">{descricao}</p>
-
-        {/* <button className="btn-cancelar">
-        <BiX className="icon-close" />
-      </button> */}
       </div>
     </div>
   );

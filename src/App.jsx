@@ -14,7 +14,7 @@ import { withMask } from "use-mask-input";
 import axios from "axios";
 
 export function App() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalClienteAberto, setModalClienteAberto] = useState(false);
   const [cep, setCep] = useState("");
 
   const [endereco, setEndereco] = useState({
@@ -25,11 +25,11 @@ export function App() {
   const navigate = useNavigate();
 
   function abrirModal() {
-    setModalIsOpen(true);
+    setModalClienteAberto(true);
   }
 
   function fecharModal() {
-    setModalIsOpen(false);
+    setModalClienteAberto(false);
   }
 
   async function pegarCEP() {
@@ -37,8 +37,6 @@ export function App() {
       const resposta = await axios.get(
         `https://brasilapi.com.br/api/cep/v2/${cep}`
       );
-
-      console.log(resposta.data);
 
       setEndereco({
         bairro: resposta.data.neighborhood,
@@ -55,11 +53,6 @@ export function App() {
 
   return (
     <main className="pagina-visita">
-      {/* <div className="info-admin">
-        <span className="admin">administrador</span>
-        <BiUser className="admin-img" />
-      </div> */}
-
       <div className="cabecalho-visita">
         <h2 className="titulo-visita">Visitas</h2>
 
@@ -68,7 +61,7 @@ export function App() {
         </button>
       </div>
 
-      {modalIsOpen && (
+      {modalClienteAberto && (
         <div className="container-modal">
           <div className="modal">
             <h2 className="titulo-modal">Cadastro visita</h2>
