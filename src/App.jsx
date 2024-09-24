@@ -4,13 +4,24 @@ import "./app.scss";
 import { useNavigate } from "react-router-dom";
 
 import { usuarioEstaLogado } from "./service/auth.js";
-import { BiUser, BiX } from "react-icons/bi";
-import { BsPlus } from "react-icons/bs";
+import { BiX } from "react-icons/bi";
+import { BsArrowRight, BsPlus } from "react-icons/bs";
 import { CardVisita } from "./components/card-visita/index.jsx";
 import { visitas } from "./mocks/visitas-mocks.jsx";
 
+import { withMask } from "use-mask-input";
+
+import axios from "axios";
+
 export function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cep, setCep] = useState("");
+
+  const [endereco, setEndereco] = useState({
+    bairro: "",
+    logradouro: "",
+  });
+
   const navigate = useNavigate();
 
   function abrirModal() {
@@ -19,6 +30,23 @@ export function App() {
 
   function fecharModal() {
     setModalIsOpen(false);
+  }
+
+  async function pegarCEP() {
+    try {
+      const resposta = await axios.get(
+        `https://brasilapi.com.br/api/cep/v2/${cep}`
+      );
+
+      console.log(resposta.data);
+
+      setEndereco({
+        bairro: resposta.data.neighborhood,
+        logradouro: resposta.data.street,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -55,24 +83,49 @@ export function App() {
                 </div>
                 <div className="grupo-input">
                   <label htmlFor="bairro">BAIRRO</label>
-                  <input type="text" id="bairro" disabled />
+                  <input
+                    type="text"
+                    id="bairro"
+                    disabled
+                    value={endereco.bairro}
+                  />
                 </div>
                 <div className="grupo-input">
-                  <label htmlFor="nome">TELEFONE CLIENTE</label>
-                  <input type="text" id="nome" />
+                  <label htmlFor="telefone">TELEFONE CLIENTE</label>
+                  <input
+                    type="text"
+                    id="telefone"
+                    ref={withMask("(99) 99999-9999")}
+                  />
                 </div>
                 <div className="grupo-input">
                   <label htmlFor="log">LOGRADOURO</label>
-                  <input type="text" id="log" disabled />
+                  <input
+                    type="text"
+                    id="log"
+                    disabled
+                    value={endereco.logradouro}
+                  />
                 </div>
                 <div className="grupo-input">
-                  <label htmlFor="telefone">CEP CLIENTE</label>
-                  <input type="text" id="telefone" />
+                  <label htmlFor="cep">CEP CLIENTE</label>
+                  <input
+                    type="text"
+                    onBlur={pegarCEP}
+                    id="cep"
+                    ref={withMask("99999-999")}
+                    onChange={(e) => setCep(e.target.value)}
+                    value={cep}
+                  />
                 </div>
                 <div className="grupo-input">
                   <label htmlFor="numero">N° CASA</label>
-                  <input type="text" id="numero" />
+                  <input type="number" id="numero" />
                 </div>
+
+                <button type="button" className="btn-proximo">
+                  Próximo <BsArrowRight />
+                </button>
               </form>
             </div>
           </div>
@@ -89,6 +142,7 @@ export function App() {
               .map((v) => {
                 return (
                   <CardVisita
+                    key={v.id}
                     cliente={v.nomeCliente}
                     descricao={v.descricao}
                     status={v.status}

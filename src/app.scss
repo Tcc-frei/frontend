@@ -136,6 +136,21 @@
             color: #d9d9d9;
           }
         }
+
+        .btn-proximo {
+          width: fit-content;
+          padding: 10px 55px;
+          border: none;
+          font-family: "Rubik";
+          text-transform: uppercase;
+          cursor: pointer;
+
+          background-color: #a3e635;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
       }
     }
   }
