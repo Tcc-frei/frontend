@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { usuarioEstaLogado } from "./service/auth.js";
 import { BiX } from "react-icons/bi";
-import { BsArrowRight, BsPlus } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 import { CardVisita } from "./components/card-visita/index.jsx";
 import { visitas } from "./mocks/visitas-mocks.jsx";
 
@@ -17,6 +17,8 @@ export function App() {
   const [modalClienteAberto, setModalClienteAberto] = useState(false);
   const [cep, setCep] = useState("");
 
+  const [loadingCEP, setLoadingCEP] = useState(false);
+
   const [endereco, setEndereco] = useState({
     bairro: "",
     logradouro: "",
@@ -24,15 +26,13 @@ export function App() {
 
   const navigate = useNavigate();
 
-  function abrirModal() {
-    setModalClienteAberto(true);
-  }
+  const abrirModal = () => setModalClienteAberto(true);
 
-  function fecharModal() {
-    setModalClienteAberto(false);
-  }
+  const fecharModal = () => setModalClienteAberto(false);
 
   async function pegarCEP() {
+    setLoadingCEP(true)
+    
     try {
       const resposta = await axios.get(
         `https://brasilapi.com.br/api/cep/v2/${cep}`
@@ -48,6 +48,8 @@ export function App() {
       console.log(errors);
 
       console.log(error.response.data);
+    } finally {
+      setLoadingCEP(false);
     }
   }
 
