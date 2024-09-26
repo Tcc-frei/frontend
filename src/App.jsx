@@ -100,6 +100,7 @@ export function App() {
                 <div className="grupo-input">
                   <label htmlFor="log">LOGRADOURO</label>
                   <input
+                    className="animate"
                     type="text"
                     id="log"
                     disabled
