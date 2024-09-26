@@ -186,7 +186,7 @@
           display: block;
           border-radius: 50%;
 
-          animation: animate-outline 1s infinite;
+          animation: input-animate 1.5s ease-in-out infinite;
         }
       }
 
@@ -227,12 +227,15 @@
 
 @keyframes input-animate {
   0% {
-    background-color: #303136
+    background-color: #303136;
+    opacity: 1;
   }
   50% {
-    background-color: #212225
+    background-color: #2a2b2e;
+    opacity: 0.9;
   }
   100% {
-    background-color: #303136
+    background-color: #303136;
+    opacity: 1;
   }
 }

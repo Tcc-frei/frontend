@@ -14,7 +14,7 @@ import { withMask } from "use-mask-input";
 import axios from "axios";
 
 export function App() {
-  const [modalClienteAberto, setModalClienteAberto] = useState(false);
+  const [showClienteModal, setShowClienteAberto] = useState(false);
   const [cep, setCep] = useState("");
 
   const [loadingCEP, setLoadingCEP] = useState(false);
@@ -26,21 +26,22 @@ export function App() {
 
   const navigate = useNavigate();
 
-  const abrirModal = () => setModalClienteAberto(true);
+  const abrirModal = () => setShowClienteAberto(true);
 
-  const fecharModal = () => setModalClienteAberto(false);
+  const fecharModal = () => setShowClienteAberto(false);
 
   async function pegarCEP() {
-    setLoadingCEP(true)
-    
+    setLoadingCEP(true);
+
     try {
-      const resposta = await axios.get(
-        `https://brasilapi.com.br/api/cep/v2/${cep}`
-      );
+      const resposta = await axios.get(`http://viacep.com.br/ws/${cep}/json/`);
+      // const resposta = await axios.get(
+      //   `https://brasilapi.com.br/api/cep/v2/${cep}`
+      // ); // essa API ta dando pau as vezes, resolvi trocar ...
 
       setEndereco({
-        bairro: resposta.data.neighborhood,
-        logradouro: resposta.data.street,
+        bairro: resposta.data.bairro,
+        logradouro: resposta.data.logradouro,
       });
     } catch (error) {
       const { errors } = error.response.data;
@@ -67,7 +68,7 @@ export function App() {
         </button>
       </div>
 
-      {modalClienteAberto && (
+      {showClienteModal && (
         <div className="container-modal">
           <div className="modal">
             <h2 className="titulo-modal">Cadastro visita</h2>
@@ -83,6 +84,8 @@ export function App() {
                 <div className="grupo-input">
                   <label htmlFor="bairro">BAIRRO</label>
                   <input
+                    className={`${loadingCEP && "animate"}`}
+                    placeholder={`${loadingCEP ? "Buscando..." : ""}`}
                     type="text"
                     id="bairro"
                     disabled
@@ -100,7 +103,8 @@ export function App() {
                 <div className="grupo-input">
                   <label htmlFor="log">LOGRADOURO</label>
                   <input
-                    className="animate"
+                    className={`${loadingCEP && "animate"}`}
+                    placeholder={`${loadingCEP ? "Buscando..." : ""}`}
                     type="text"
                     id="log"
                     disabled
