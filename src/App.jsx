@@ -14,7 +14,9 @@ import { withMask } from "use-mask-input";
 import axios from "axios";
 
 export function App() {
-  const [showClienteModal, setShowClienteAberto] = useState(false);
+  const [showClienteModal, setShowClienteModal] = useState(false);
+  const [showHorarioModal, setShowHorarioModal] = useState(false);
+
   const [cep, setCep] = useState("");
 
   const [loadingCEP, setLoadingCEP] = useState(false);
@@ -26,9 +28,17 @@ export function App() {
 
   const navigate = useNavigate();
 
-  const abrirModal = () => setShowClienteAberto(true);
+  const abrirModalCliente = () => setShowClienteModal(true);
 
-  const fecharModal = () => setShowClienteAberto(false);
+  const fecharModalCliente = () => setShowClienteModal(false);
+
+  const abrirModalHorario = () => {
+    setShowClienteModal(false);
+
+    setShowHorarioModal(true);
+  };
+
+  const fecharModalHorario = () => setShowHorarioModal(false);
 
   async function pegarCEP() {
     setLoadingCEP(true);
@@ -44,11 +54,11 @@ export function App() {
         logradouro: resposta.data.logradouro,
       });
     } catch (error) {
-      const { errors } = error.response.data;
+      // const { errors } = error.response.data;
 
-      console.log(errors);
+      console.log(error);
 
-      console.log(error.response.data);
+      // console.log(error.response.data);
     } finally {
       setLoadingCEP(false);
     }
@@ -63,7 +73,7 @@ export function App() {
       <div className="cabecalho-visita">
         <h2 className="titulo-visita">Visitas</h2>
 
-        <button className="btn-visita" onClick={abrirModal}>
+        <button className="btn-visita" onClick={abrirModalCliente}>
           <BsPlus /> criar nova visita
         </button>
       </div>
@@ -73,7 +83,7 @@ export function App() {
           <div className="modal">
             <h2 className="titulo-modal">Cadastro visita</h2>
 
-            <BiX className="close-icon" onClick={fecharModal} />
+            <BiX className="close-icon" onClick={fecharModalCliente} />
 
             <div className="content-modal">
               <form className="formulario">
@@ -127,11 +137,25 @@ export function App() {
                   <input type="number" id="numero" />
                 </div>
 
-                <button type="button" className="btn-proximo">
+                <button
+                  type="button"
+                  className="btn-proximo"
+                  onClick={abrirModalHorario}
+                >
                   Próximo
                 </button>
               </form>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showHorarioModal && (
+        <div className="container-modal">
+          <div className="modal">
+            <h2 className="titulo-modal">Horários Disponíveis</h2>
+
+            <BiX className="close-icon" onClick={fecharModalHorario} />
           </div>
         </div>
       )}
