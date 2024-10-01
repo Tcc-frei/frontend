@@ -180,7 +180,10 @@ export function App() {
             <BiX className="close-icon" onClick={fecharModalHorario} />
 
             <div className="content-modal">
-              <input type="date" onChange={(e) => setDataSelecionada(e.target.value)} value={dataSelecionada} className="input-calendario" ref={withMask("99/99/9999")} />
+              <div className="grupo-input">
+                <label htmlFor="date">Data agendamento</label>
+                <input type="date" id="date" onChange={(e) => setDataSelecionada(e.target.value)} value={dataSelecionada} className="input-calendario" ref={withMask("99/99/9999")} />
+              </div>
 
               <div className="container-horarios">
                 {horarios.map((hora, idx) => {

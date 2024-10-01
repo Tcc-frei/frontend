@@ -172,6 +172,16 @@
     }
 
     .content-modal {
+      .grupo-input {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+          font: 500 15px "Rubik";
+          text-transform: uppercase;
+        }
+      }
 
       .input-calendario {
         background-color: transparent;
@@ -179,6 +189,8 @@
         padding: 5px 10px;
         outline: none;
         color: #ffffff;
+        width: fit-content;
+        border-radius: 5px;
 
         font: 400 15px "Rubik";
 
