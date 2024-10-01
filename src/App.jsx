@@ -7,15 +7,18 @@ import { usuarioEstaLogado } from "./service/auth.js";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { CardVisita } from "./components/card-visita/index.jsx";
-import { visitas } from "./mocks/visitas-mocks.jsx";
+import { visitas } from "./mocks/visitas-mocks.js";
 
 import { withMask } from "use-mask-input";
 
 import axios from "axios";
+import { horarios } from "./mocks/horarios-mocks.js";
 
 export function App() {
   const [showClienteModal, setShowClienteModal] = useState(false);
   const [showHorarioModal, setShowHorarioModal] = useState(false);
+
+  const [horaSelecionada, setHoraSelecionada] = useState("");
 
   const [cep, setCep] = useState("");
 
@@ -62,6 +65,12 @@ export function App() {
     } finally {
       setLoadingCEP(false);
     }
+  }
+
+  function selecionarHorario(hora) {
+    console.log(hora);
+
+    setHoraSelecionada(hora);
   }
 
   useEffect(() => {
@@ -151,11 +160,26 @@ export function App() {
       )}
 
       {showHorarioModal && (
-        <div className="container-modal">
+        <div className="container-modal horario">
           <div className="modal">
             <h2 className="titulo-modal">Horários Disponíveis</h2>
+            <p className="subtitulo-modal">Agora selecione a data e hora que mais se encaixa na sua agenda !</p>
 
             <BiX className="close-icon" onClick={fecharModalHorario} />
+
+            <div className="content-modal">
+              <input type="date" className="input-calendario" ref={withMask("99/99/9999")} />
+
+              <div className="container-horarios">
+                {horarios.map((hora, idx) => {
+                  return (
+                    <div className={`card-hora ${hora == horaSelecionada && "hora-selecionada"}`} onClick={() => selecionarHorario(hora)} key={idx}>
+                      <span>{hora}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       )}

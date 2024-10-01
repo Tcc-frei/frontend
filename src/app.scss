@@ -165,6 +165,55 @@
     }
   }
 
+  .container-modal.horario {
+    .subtitulo-modal {
+      font: 400 13px "Rubik";
+      color: #f1f1f1;
+    }
+
+    .content-modal {
+
+      .input-calendario {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 5px 10px;
+        outline: none;
+        color: #d1d1d1;
+
+        font: 400 15px "Rubik";
+
+        &::-webkit-calendar-picker-indicator {
+          color: white;
+        }
+      }
+
+      .container-horarios {
+        margin-top: 15px;
+        max-width: 70%;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+
+        .card-hora {
+          background-color: #44454B;
+          padding: 4px 15px;
+          border-radius: 5px;
+
+          font: 400 16px "Rubik";
+          cursor: pointer;
+        }
+
+        .card-hora.hora-selecionada {
+          background-color: #80ed99;
+          color: black;
+
+          transform: translateY(-2px);
+          transition: all 0.25s;
+        }
+      }
+    }
+  }
+
   .container-visitas {
     padding: 2% 5%;
     display: flex;
