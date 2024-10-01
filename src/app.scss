@@ -178,7 +178,7 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
         padding: 5px 10px;
         outline: none;
-        color: #d1d1d1;
+        color: #ffffff;
 
         font: 400 15px "Rubik";
 
@@ -189,6 +189,7 @@
 
       .container-horarios {
         margin-top: 15px;
+        margin-bottom: 15px;
         max-width: 70%;
         display: flex;
         gap: 15px;
@@ -207,8 +208,18 @@
           background-color: #80ed99;
           color: black;
 
-          transform: translateY(-2px);
+          transform: translateY(-3px);
           transition: all 0.25s;
+        }
+      }
+
+      .container-buttons {
+        display: flex;
+        gap: 10px;
+
+        .btn.salvar {
+          background-color: #80ed99;
+          color: black;
         }
       }
     }

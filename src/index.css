@@ -26,3 +26,19 @@ input::-webkit-inner-spin-button {
 body {
   height: 100dvh;
 }
+
+.btn {
+  width: fit-content;
+  padding: 10px 55px;
+  border: none;
+  font-family: "Rubik";
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+
+  background-color: #303136;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

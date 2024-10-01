@@ -19,6 +19,7 @@ export function App() {
   const [showHorarioModal, setShowHorarioModal] = useState(false);
 
   const [horaSelecionada, setHoraSelecionada] = useState("");
+  const [dataSelecionada, setDataSelecionada] = useState("");
 
   const [cep, setCep] = useState("");
 
@@ -42,6 +43,12 @@ export function App() {
   };
 
   const fecharModalHorario = () => setShowHorarioModal(false);
+
+  const voltarModalHorario = () => {
+    setShowHorarioModal(false);
+
+    setShowClienteModal(true)
+  }
 
   async function pegarCEP() {
     setLoadingCEP(true);
@@ -67,9 +74,14 @@ export function App() {
     }
   }
 
-  function selecionarHorario(hora) {
-    console.log(hora);
+  // Função para salvar o agendamento no banco de dados
+  async function criarAgendamento() {
+    const dataFormatada = `${dataSelecionada}:${horaSelecionada}`;
+    
+    console.log(dataFormatada);
+  }
 
+  function selecionarHorario(hora) {
     setHoraSelecionada(hora);
   }
 
@@ -168,7 +180,7 @@ export function App() {
             <BiX className="close-icon" onClick={fecharModalHorario} />
 
             <div className="content-modal">
-              <input type="date" className="input-calendario" ref={withMask("99/99/9999")} />
+              <input type="date" onChange={(e) => setDataSelecionada(e.target.value)} value={dataSelecionada} className="input-calendario" ref={withMask("99/99/9999")} />
 
               <div className="container-horarios">
                 {horarios.map((hora, idx) => {
@@ -178,6 +190,11 @@ export function App() {
                     </div>
                   );
                 })}
+              </div>
+
+              <div className="container-buttons">
+                 <button className="btn" onClick={voltarModalHorario}>Voltar</button>
+                 <button className="btn salvar" onClick={criarAgendamento}>Salvar</button>
               </div>
             </div>
           </div>
