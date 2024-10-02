@@ -1,7 +1,7 @@
 import { BiUser } from "react-icons/bi";
 import "./styles.scss";
 
-export function CardVisita({ cliente, descricao, status }) {
+export function CardVisita({ cliente, descricao, status, abrirDetalhes }) {
   return (
     <div
       className="card"
@@ -11,6 +11,7 @@ export function CardVisita({ cliente, descricao, status }) {
         }`,
         cursor: `${status === "finalizado" && "not-allowed"}`,
       }}
+      onClick={abrirDetalhes}
     >
       <div className="info-cliente">
         <BiUser className="icon-cliente" />

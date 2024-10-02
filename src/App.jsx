@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import "./app.scss";
 
 import { useNavigate } from "react-router-dom";
@@ -13,10 +13,14 @@ import { withMask } from "use-mask-input";
 
 import axios from "axios";
 import { horarios } from "./mocks/horarios-mocks.js";
+import { ModalVisita } from "./components/visita-modal/index.jsx";
 
 export function App() {
   const [showClienteModal, setShowClienteModal] = useState(false);
   const [showHorarioModal, setShowHorarioModal] = useState(false);
+  const [showVisitaModal, setShowVisitaModal] = useState(false);
+
+  const [idVisitaSelecionada, setIdVisitaSelecionada] = useState(0);
 
   const [horaSelecionada, setHoraSelecionada] = useState("");
   const [dataSelecionada, setDataSelecionada] = useState("");
@@ -47,8 +51,16 @@ export function App() {
   const voltarModalHorario = () => {
     setShowHorarioModal(false);
 
-    setShowClienteModal(true)
-  }
+    setShowClienteModal(true);
+  };
+
+  const abrirDetalhesVisita = (id) => {
+    setIdVisitaSelecionada(id);
+
+    setShowVisitaModal(true);
+  };
+
+  const fecharDetalhesVisita = () => setShowVisitaModal(false);
 
   async function pegarCEP() {
     setLoadingCEP(true);
@@ -77,7 +89,7 @@ export function App() {
   // Função para salvar o agendamento no banco de dados
   async function criarAgendamento() {
     const dataFormatada = `${dataSelecionada}:${horaSelecionada}`;
-    
+
     console.log(dataFormatada);
   }
 
@@ -175,20 +187,35 @@ export function App() {
         <div className="container-modal horario">
           <div className="modal">
             <h2 className="titulo-modal">Horários Disponíveis</h2>
-            <p className="subtitulo-modal">Agora selecione a data e hora que mais se encaixa na sua agenda !</p>
+            <p className="subtitulo-modal">
+              Agora selecione a data e hora que mais se encaixa na sua agenda !
+            </p>
 
             <BiX className="close-icon" onClick={fecharModalHorario} />
 
             <div className="content-modal">
               <div className="grupo-input">
                 <label htmlFor="date">Data agendamento</label>
-                <input type="date" id="date" onChange={(e) => setDataSelecionada(e.target.value)} value={dataSelecionada} className="input-calendario" ref={withMask("99/99/9999")} />
+                <input
+                  type="date"
+                  id="date"
+                  onChange={(e) => setDataSelecionada(e.target.value)}
+                  value={dataSelecionada}
+                  className="input-calendario"
+                  ref={withMask("99/99/9999")}
+                />
               </div>
 
               <div className="container-horarios">
                 {horarios.map((hora, idx) => {
                   return (
-                    <div className={`card-hora ${hora == horaSelecionada && "hora-selecionada"}`} onClick={() => selecionarHorario(hora)} key={idx}>
+                    <div
+                      className={`card-hora ${
+                        hora == horaSelecionada && "hora-selecionada"
+                      }`}
+                      onClick={() => selecionarHorario(hora)}
+                      key={idx}
+                    >
                       <span>{hora}</span>
                     </div>
                   );
@@ -196,11 +223,24 @@ export function App() {
               </div>
 
               <div className="container-buttons">
-                 <button className="btn" onClick={voltarModalHorario}>Voltar</button>
-                 <button className="btn salvar" onClick={criarAgendamento}>Salvar</button>
+                <button className="btn" onClick={voltarModalHorario}>
+                  Voltar
+                </button>
+                <button className="btn salvar" onClick={criarAgendamento}>
+                  Salvar
+                </button>
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {showVisitaModal && (
+        <div className="container-modal">
+          <ModalVisita
+            id={idVisitaSelecionada}
+            fecharModal={fecharDetalhesVisita}
+          />
         </div>
       )}
 
@@ -218,6 +258,7 @@ export function App() {
                     cliente={v.nomeCliente}
                     descricao={v.descricao}
                     status={v.status}
+                    abrirDetalhes={() => abrirDetalhesVisita(v.id)}
                   />
                 );
               })}
@@ -233,6 +274,7 @@ export function App() {
               .map((v) => {
                 return (
                   <CardVisita
+                    key={v.id}
                     cliente={v.nomeCliente}
                     descricao={v.descricao}
                     status={v.status}
