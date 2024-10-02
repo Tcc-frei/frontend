@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { visitas } from "../../mocks/visitas-mocks";
-import { BiX } from "react-icons/bi";
+import { BiUser, BiX } from "react-icons/bi";
 
 import "./styles.scss";
 
@@ -24,7 +24,18 @@ export function ModalVisita({ id, fecharModal }) {
         <BiX className="close-icon" onClick={fecharModal} />
 
         <div className="content-modal">
-          <p>{visita.id}</p>
+          <div className="user-info">
+            <BiUser className="user-icon" />
+
+            <span className="user-cliente">{visita.nomeCliente}</span>
+          </div>
+
+          <p className="descricao">{visita.descricao}</p>
+
+          <div className="container-buttons">
+            <button className="btn excluir">Excluir agendamento</button>
+            <button className="btn salvar">Fazer orçamento</button>
+          </div>
         </div>
       </div>
     )

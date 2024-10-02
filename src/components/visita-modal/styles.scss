@@ -1,3 +1,49 @@
 .modal.detalhe {
-  min-width: 400px !important;
+  max-width: 300px !important;
+  font-family: "Rubik";
+
+  .user-info {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    .user-cliente {
+      font-size: 18px;
+    }
+
+    .user-icon {
+      font-size: 20px;
+    }
+  }
+
+  .descricao {
+    font-size: 15px;
+    margin: 20px 0;
+
+    color: #d1d1d1;
+  }
+
+  .container-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 !important;
+      overflow: hidden;
+    }
+    .btn.salvar {
+      background-color: #80ed99;
+      color: black;
+    }
+    .btn.excluir {
+      background-color: #d4475f;
+      color: white;
+    }
+  }
 }
