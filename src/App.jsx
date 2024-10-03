@@ -1,4 +1,4 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import "./app.scss";
 
 import { useNavigate } from "react-router-dom";
@@ -255,7 +255,7 @@ export function App() {
                 return (
                   <CardVisita
                     key={v.id}
-                    cliente={v.nomeCliente}
+                    cliente={v.cliente}
                     descricao={v.descricao}
                     status={v.status}
                     abrirDetalhes={() => abrirDetalhesVisita(v.id)}
@@ -275,7 +275,7 @@ export function App() {
                 return (
                   <CardVisita
                     key={v.id}
-                    cliente={v.nomeCliente}
+                    cliente={v.cliente}
                     descricao={v.descricao}
                     status={v.status}
                   />

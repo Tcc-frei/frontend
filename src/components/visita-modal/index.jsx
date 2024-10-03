@@ -27,7 +27,7 @@ export function ModalVisita({ id, fecharModal }) {
           <div className="user-info">
             <BiUser className="user-icon" />
 
-            <span className="user-cliente">{visita.nomeCliente}</span>
+            <span className="user-cliente">{visita.cliente}</span>
           </div>
 
           <p className="descricao">{visita.descricao}</p>

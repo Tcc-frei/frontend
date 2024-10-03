@@ -1,5 +1,5 @@
 .modal.detalhe {
-  max-width: 300px !important;
+  min-width: 500px !important;
   font-family: "Rubik";
 
   .user-info {
@@ -28,9 +28,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1;
 
     .btn {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
