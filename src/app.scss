@@ -1,6 +1,7 @@
 .pagina-visita {
   background-color: #f8f9fa;
   min-height: 100dvh;
+  display: flex;
 
   color: black;
 
@@ -21,6 +22,80 @@
     .admin-img {
       font-size: 20px;
     }
+  }
+
+  .barra-lateral {
+    background-color: #212225;
+    color: #fff;
+    height: 100vh;
+    min-width: 15%;
+    // min-width: 10px;
+    // padding: 20px;
+    z-index: 999;
+
+    position: relative;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.25s;
+
+    .btn-barra {
+      position: absolute;
+      top: 20px;
+      right: -10px;
+      background-color: #212225;
+      padding: 5px;
+      border-radius: 50px;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-titulo {
+      text-transform: uppercase;
+      font: 500 20px "Rubik";
+      margin: 20px;
+    }
+
+    .lista {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .item-lista.selecionado {
+        background-color: #303136;
+      }
+
+      .item-lista {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 2px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        // justify-content: center;
+
+        .icone {
+          height: 20px;
+          color: white;
+        }
+
+        a {
+          text-transform: uppercase;
+          font: 400 15px "Rubik";
+          color: white;
+          height: auto;
+          align-items: flex-start;
+        }
+      }
+    }
+  }
+
+  .main-content {
+    width: 100dvw;
   }
 
   .cabecalho-visita {
@@ -208,7 +283,7 @@
         flex-wrap: wrap;
 
         .card-hora {
-          background-color: #44454B;
+          background-color: #44454b;
           padding: 4px 15px;
           border-radius: 5px;
 
@@ -220,7 +295,7 @@
           background-color: #80ed99;
           color: black;
 
-          transform: translateY(-3px);
+          // transform: translateY(-3px);
           transition: all 0.25s;
         }
       }
@@ -241,7 +316,7 @@
     padding: 2% 5%;
     display: flex;
     // justify-content: space-between;
-    gap: 250px;
+    gap: 14%;
 
     .visitas {
       .txt-confirmada {
