@@ -1,0 +1,128 @@
+.barra-lateral.aberto {
+  min-width: 15%;
+
+  .btn-barra {
+    transform: rotate(-180deg);
+  }
+
+  .lista .item-lista,
+  .btn-sair,
+  .header-sidebar {
+    justify-content: flex-start !important;
+  }
+
+  // .btn-sair {
+  //   justify-content: flex-start !important;
+  // }
+}
+
+.barra-lateral {
+  background-color: #212225;
+  color: #fff;
+  height: 100vh;
+  // min-width: 15%;
+  min-width: 10px;
+  // padding: 20px;
+  z-index: 999;
+
+  position: relative;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s;
+
+  display: flex;
+  flex-direction: column;
+
+  .btn-barra {
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    background-color: #212225;
+    padding: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.43s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-sidebar {
+    margin: 20px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    // border-bottom: 1px solid #303136;
+
+    .user-info {
+      p {
+        font: 400 16px "Rubik";
+      }
+
+      span {
+        font: 400 14px "Rubik";
+        color: #6b6b6b;
+      }
+    }
+  }
+
+  .lista {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .item-lista.selecionado {
+      background-color: #303136;
+    }
+
+    .item-lista {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 2px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        text-transform: uppercase;
+        font: 400 15px "Rubik";
+        color: white;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  .logout-container {
+    border-top: 1px solid #303136;
+    padding: 15px;
+
+    .btn-sair {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 4px;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.25s;
+
+      &:hover {
+        background-color: #ff5f5f;
+      }
+
+      span {
+        color: white;
+        font: 400 16px "Rubik";
+      }
+    }
+  }
+}

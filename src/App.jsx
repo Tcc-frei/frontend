@@ -15,6 +15,7 @@ import axios from "axios";
 import { horarios } from "./mocks/horarios-mocks.js";
 import { ModalVisita } from "./components/visita-modal/index.jsx";
 import { BadgeDollarSign, ChevronLeft, Clock } from "lucide-react";
+import { Sidebar } from "./components/sidebar/index.jsx";
 
 export function App() {
   const [showClienteModal, setShowClienteModal] = useState(false);
@@ -101,25 +102,7 @@ export function App() {
 
   return (
     <main className="pagina-visita">
-      <nav className="barra-lateral">
-        <div className="btn-barra">
-          <ChevronLeft size={20} />
-        </div>
-
-        <h2 className="menu-titulo">Menu</h2>
-
-        <ul className="lista">
-          <li className="item-lista selecionado">
-            <Clock size={18} />
-            <a href="">Visitas</a>
-          </li>
-
-          <li className="item-lista">
-            <BadgeDollarSign size={18} />
-            <a href="">Orçamentos</a>
-          </li>
-        </ul>
-      </nav>
+      <Sidebar />
 
       <div className="main-content">
         <div className="cabecalho-visita">
