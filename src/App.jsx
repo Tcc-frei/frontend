@@ -14,13 +14,14 @@ import { withMask } from "use-mask-input";
 import axios from "axios";
 import { horarios } from "./mocks/horarios-mocks.js";
 import { ModalVisita } from "./components/visita-modal/index.jsx";
-import { BadgeDollarSign, ChevronLeft, Clock } from "lucide-react";
 import { Sidebar } from "./components/sidebar/index.jsx";
+import { OrcamentoModal } from "./components/orcamento-modal/index.jsx";
 
 export function App() {
   const [showClienteModal, setShowClienteModal] = useState(false);
   const [showHorarioModal, setShowHorarioModal] = useState(false);
   const [showVisitaModal, setShowVisitaModal] = useState(false);
+  const [showOrcamentoModal, setShowOrcamentoModal] = useState(false);
 
   const [idVisitaSelecionada, setIdVisitaSelecionada] = useState(0);
 
@@ -63,6 +64,14 @@ export function App() {
   };
 
   const fecharDetalhesVisita = () => setShowVisitaModal(false);
+
+  const abrirOrcamentoModal = () => {
+    setShowVisitaModal(false);
+
+    setShowOrcamentoModal(true);
+  };
+
+  const fecharModalOrcamento = () => setShowOrcamentoModal(false);
 
   async function pegarCEP() {
     setLoadingCEP(true);
@@ -243,7 +252,14 @@ export function App() {
             <ModalVisita
               id={idVisitaSelecionada}
               fecharModal={fecharDetalhesVisita}
+              onClick={abrirOrcamentoModal}
             />
+          </div>
+        )}
+
+        {showOrcamentoModal && (
+          <div className="container-modal">
+            <OrcamentoModal fecharModal={fecharModalOrcamento} />
           </div>
         )}
 

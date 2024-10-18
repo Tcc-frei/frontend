@@ -4,7 +4,7 @@ import { BiUser, BiX } from "react-icons/bi";
 
 import "./styles.scss";
 
-export function ModalVisita({ id, fecharModal }) {
+export function ModalVisita({ id, fecharModal, onClick }) {
   const [visita, setVisita] = useState(null);
 
   useEffect(() => {
@@ -34,7 +34,9 @@ export function ModalVisita({ id, fecharModal }) {
 
           <div className="container-buttons">
             <button className="btn excluir">Excluir agendamento</button>
-            <button className="btn salvar">Fazer orçamento</button>
+            <button className="btn salvar" onClick={onClick}>
+              Fazer orçamento
+            </button>
           </div>
         </div>
       </div>

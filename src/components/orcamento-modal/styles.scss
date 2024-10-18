@@ -1,0 +1,58 @@
+.modal.orcamento {
+  .content-modal {
+    form {
+      display: flex;
+      gap: 25px;
+
+      .container-esquerdo {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+
+        span {
+          font-size: 13px;
+        }
+      }
+
+      textarea {
+        min-height: 180px;
+        resize: none;
+        background-color: transparent;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #333;
+        outline: none;
+
+        font: 400 14px "Rubik";
+      }
+
+      .container-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input {
+          background-color: transparent;
+          border: 1px solid #333;
+          outline: none;
+          padding: 10px;
+          border-radius: 5px;
+          font: 400 15px "Rubik";
+        }
+
+        .btn-adicionar {
+          background-color: #80ed99;
+          border: none;
+          // border-radius: 5px;
+          padding: 10px;
+
+          color: black;
+          font-family: "Rubik";
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
