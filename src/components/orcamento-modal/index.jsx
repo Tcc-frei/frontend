@@ -22,33 +22,41 @@ export function OrcamentoModal({ fecharModal }) {
   }, [descricao]);
 
   return (
-    <div className="modal orcamento">
-      <h2 className="titulo-modal">Cadastro Orçamento</h2>
+    <div className="container-modais">
+      <div className="modal orcamento">
+        <h2 className="titulo-modal">Cadastro Orçamento</h2>
 
-      <BiX className="close-icon" onClick={fecharModal} />
+        <BiX className="close-icon" onClick={fecharModal} />
 
-      <div className="content-modal">
-        <form>
-          <div className="container-esquerdo">
-            <textarea
-              maxLength={250}
-              onChange={(e) => setDescricao(e.target.value)}
-              value={descricao}
-              placeholder="Descreva aqui quaisquer problemas ou necessidades específicas que o cliente tenha mencionado durante a visita."
-            ></textarea>
+        <div className="content-modal">
+          <form>
+            <div className="container-esquerdo">
+              <textarea
+                maxLength={250}
+                onChange={(e) => setDescricao(e.target.value)}
+                value={descricao}
+                placeholder="Descreva aqui quaisquer problemas ou necessidades específicas que o cliente tenha mencionado durante a visita."
+              ></textarea>
 
-            <span style={{ color: corSpan }}>{descricao.length}/250</span>
+              <span style={{ color: corSpan }}>{descricao.length}/250</span>
 
-            <button className="btn">cadastrar orçamento</button>
-          </div>
+              <button className="btn">cadastrar orçamento</button>
+            </div>
 
-          <div className="container-inputs">
-            <input placeholder="Serviço" type="text" />
-            <input placeholder="Preço" type="number" />
+            <div className="container-inputs">
+              <input placeholder="Serviço" type="text" />
+              <input placeholder="Preço" type="number" />
 
-            <button className="btn-adicionar">Adicionar serviço</button>
-          </div>
-        </form>
+              <button className="btn-adicionar">Adicionar serviço</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div className="modal servicos">
+        <h2 className="titulo-modal">Serviços registrados</h2>
+
+        <div className="content-modal"></div>
       </div>
     </div>
   );

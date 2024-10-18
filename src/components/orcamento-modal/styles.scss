@@ -1,3 +1,8 @@
+.container-modais {
+  display: flex;
+  gap: 10px;
+}
+
 .modal.orcamento {
   .content-modal {
     form {
@@ -55,4 +60,8 @@
       }
     }
   }
+}
+
+.modal.servicos {
+  min-width: auto !important;
 }
