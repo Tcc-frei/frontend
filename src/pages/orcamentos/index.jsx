@@ -19,6 +19,8 @@ export function OrcamentoPage() {
     setShowDetalhesOrcamento(true);
   }
 
+  const fecharModalDetalhes = () => setShowDetalhesOrcamento(false);
+
   useEffect(() => {
     async function pegarOrcamentos() {
       try {
@@ -46,7 +48,10 @@ export function OrcamentoPage() {
 
         {showDetalhesOrcamento && (
           <div className="container-modal">
-            <ModalOrcamentoDetalhes />
+            <ModalOrcamentoDetalhes
+              id={ídOrcamento}
+              fecharModal={fecharModalDetalhes}
+            />
           </div>
         )}
 
@@ -71,7 +76,7 @@ export function OrcamentoPage() {
           </div>
 
           <div className="visitas">
-            <h3 className="txt-pendente">Pendentes</h3>
+            <h3 className="txt-pendente">Aguardando aprovação</h3>
 
             <div className="container-cards">
               {orcamentos

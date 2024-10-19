@@ -1,0 +1,96 @@
+.modal.detalhe.orcamento {
+  max-width: 500px !important;
+
+  .content-modal {
+    .user-info-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span.orcamento-horario {
+        font-size: 15px;
+        color: #d1d1d1;
+      }
+    }
+
+    .info-orcamento {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .container-situacao {
+        display: flex;
+        gap: 10px;
+
+        span {
+          color: #d1d1d1;
+        }
+
+        .info-status {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          &::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ff9d00;
+            display: block;
+          }
+        }
+
+        .total {
+          color: #80ed99;
+        }
+
+        .servicos {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          .container-servicos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .card-servico {
+            background-color: #3ba55b;
+            padding: 5px 15px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .nome-servico {
+              color: white;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      .container-buttons {
+        margin-top: 20px;
+
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+
+        .btn.aprovar {
+          background-color: #80ed99;
+          color: black;
+          // flex: 1;
+        }
+
+        .btn.excluir {
+          background-color: #d4475f;
+        }
+      }
+    }
+  }
+}
