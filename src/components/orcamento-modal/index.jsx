@@ -1,6 +1,11 @@
-import { BiX } from "react-icons/bi";
-import "./styles.scss";
 import { useEffect, useState } from "react";
+import { BiX } from "react-icons/bi";
+
+import { api } from "../../service/axios";
+
+import "./styles.scss";
+import toast from "react-hot-toast";
+import { Trash } from "lucide-react";
 
 export function OrcamentoModal({ fecharModal }) {
   const [descricao, setDescricao] = useState("");
@@ -9,6 +14,7 @@ export function OrcamentoModal({ fecharModal }) {
 
   const [servicosAdicionados, setServicosAdicionados] = useState([
     {
+      id: 1,
       nome: "Troca de lampada",
       preco: 500,
     },
@@ -26,17 +32,43 @@ export function OrcamentoModal({ fecharModal }) {
     }
   }
 
-  function adicionarServico() {
-    setServicosAdicionados((prevState) => [
-      ...prevState,
-      {
+  async function adicionarServico() {
+    try {
+      const resposta = await api.post("/servico", {
         nome: servico,
-        preco: Number(precoServico),
-      },
-    ]);
+        preco: precoServico,
+      });
 
-    setServico("");
-    setPrecoServico("");
+      const { id } = resposta.data;
+
+      setServicosAdicionados((prevState) => [
+        ...prevState,
+        {
+          id: id,
+          nome: servico,
+          preco: Number(precoServico),
+        },
+      ]);
+
+      console.log(servicosAdicionados);
+
+      setServico("");
+      setPrecoServico("");
+    } catch (error) {
+      const { erro } = error.response.data;
+
+      toast.error(erro);
+    }
+  }
+
+  function removerServico(id) {
+    const novoArray = servicosAdicionados.filter((s) => s.id != id);
+
+    setServicosAdicionados(novoArray);
+  }
+
+  function formatarServico(servico) {
+    return servico.length >= 20 ? servico.slice(0, 20).concat("...") : servico;
   }
 
   useEffect(() => {
@@ -96,10 +128,19 @@ export function OrcamentoModal({ fecharModal }) {
 
         <div className="content-modal">
           <div className="content-servicos">
-            {servicosAdicionados.map((servico) => {
+            {servicosAdicionados.map((servico, idx) => {
               return (
-                <div className="servico-item">
-                  <span>{servico.nome}</span>
+                <div key={idx} className="servico-item">
+                  <div className="nome-servico">
+                    <span>{formatarServico(servico.nome)}</span>
+
+                    <Trash
+                      onClick={() => removerServico(servico.id)}
+                      size={18}
+                      color="#e9ecef"
+                      className="icon-servico"
+                    />
+                  </div>
                   <span className="servico-preco">
                     R$ {servico.preco.toFixed(2).replace(".", ",")}
                   </span>
