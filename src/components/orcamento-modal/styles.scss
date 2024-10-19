@@ -63,5 +63,33 @@
 }
 
 .modal.servicos {
+  overflow-y: auto;
+
+  .content-servicos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .servico-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      span {
+        background-color: #161618;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      span.servico-preco {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.modal.servicos {
   min-width: auto !important;
 }

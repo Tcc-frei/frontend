@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 
 export function OrcamentoModal({ fecharModal }) {
   const [descricao, setDescricao] = useState("");
+  const [servico, setServico] = useState("");
+  const [precoServico, setPrecoServico] = useState("");
+
+  const [servicosAdicionados, setServicosAdicionados] = useState([
+    {
+      nome: "Troca de lampada",
+      preco: 500,
+    },
+  ]);
 
   const [corSpan, setCorSpan] = useState("");
 
@@ -15,6 +24,19 @@ export function OrcamentoModal({ fecharModal }) {
     } else {
       setCorSpan("white");
     }
+  }
+
+  function adicionarServico() {
+    setServicosAdicionados((prevState) => [
+      ...prevState,
+      {
+        nome: servico,
+        preco: Number(precoServico),
+      },
+    ]);
+
+    setServico("");
+    setPrecoServico("");
   }
 
   useEffect(() => {
@@ -44,10 +66,26 @@ export function OrcamentoModal({ fecharModal }) {
             </div>
 
             <div className="container-inputs">
-              <input placeholder="Serviço" type="text" />
-              <input placeholder="Preço" type="number" />
+              <input
+                placeholder="Serviço"
+                type="text"
+                onChange={(e) => setServico(e.target.value)}
+                value={servico}
+              />
+              <input
+                placeholder="Preço"
+                type="number"
+                onChange={(e) => setPrecoServico(e.target.value)}
+                value={precoServico}
+              />
 
-              <button className="btn-adicionar">Adicionar serviço</button>
+              <button
+                type="button"
+                className="btn-adicionar"
+                onClick={adicionarServico}
+              >
+                Adicionar serviço
+              </button>
             </div>
           </form>
         </div>
@@ -56,7 +94,20 @@ export function OrcamentoModal({ fecharModal }) {
       <div className="modal servicos">
         <h2 className="titulo-modal">Serviços registrados</h2>
 
-        <div className="content-modal"></div>
+        <div className="content-modal">
+          <div className="content-servicos">
+            {servicosAdicionados.map((servico) => {
+              return (
+                <div className="servico-item">
+                  <span>{servico.nome}</span>
+                  <span className="servico-preco">
+                    R$ {servico.preco.toFixed(2).replace(".", ",")}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
