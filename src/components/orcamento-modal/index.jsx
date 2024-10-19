@@ -7,7 +7,7 @@ import "./styles.scss";
 import toast from "react-hot-toast";
 import { Trash } from "lucide-react";
 
-export function OrcamentoModal({ fecharModal }) {
+export function OrcamentoModal({ fecharModal, idVisita }) {
   const [descricao, setDescricao] = useState("");
   const [servico, setServico] = useState("");
   const [precoServico, setPrecoServico] = useState("");
@@ -50,14 +50,31 @@ export function OrcamentoModal({ fecharModal }) {
         },
       ]);
 
-      console.log(servicosAdicionados);
-
       setServico("");
       setPrecoServico("");
     } catch (error) {
       const { erro } = error.response.data;
 
       toast.error(erro);
+    }
+  }
+
+  async function criarOrcamento() {
+    try {
+      const arrayIdServicos = servicosAdicionados.map((m) => m.id);
+
+      const resposta = await api.post(`/orcamento/${idVisita}`, {
+        descricao: descricao,
+        arrayServicos: arrayIdServicos,
+      });
+
+      if (resposta.status === 201) {
+        toast.success("Orçamento criado com sucesso !", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -94,7 +111,9 @@ export function OrcamentoModal({ fecharModal }) {
 
               <span style={{ color: corSpan }}>{descricao.length}/250</span>
 
-              <button className="btn">cadastrar orçamento</button>
+              <button type="button" className="btn" onClick={criarOrcamento}>
+                cadastrar orçamento
+              </button>
             </div>
 
             <div className="container-inputs">

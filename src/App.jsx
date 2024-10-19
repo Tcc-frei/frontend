@@ -259,7 +259,10 @@ export function App() {
 
         {showOrcamentoModal && (
           <div className="container-modal">
-            <OrcamentoModal fecharModal={fecharModalOrcamento} />
+            <OrcamentoModal
+              fecharModal={fecharModalOrcamento}
+              idVisita={idVisitaSelecionada}
+            />
           </div>
         )}
 
