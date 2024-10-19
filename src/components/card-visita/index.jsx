@@ -7,7 +7,11 @@ export function CardVisita({ cliente, descricao, status, abrirDetalhes }) {
       className="card"
       style={{
         borderLeft: `5px solid ${
-          status === "confirmado" ? "#80ed99" : "#585858"
+          status === "confirmado"
+            ? "#80ed99"
+            : status === "pendente"
+            ? "#ff9d00"
+            : "#585858"
         }`,
         cursor: `${status === "finalizado" && "not-allowed"}`,
       }}

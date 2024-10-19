@@ -110,12 +110,12 @@ export function App() {
   }, []);
 
   return (
-    <main className="pagina-visita">
+    <main className="pagina">
       <Sidebar />
 
       <div className="main-content">
-        <div className="cabecalho-visita">
-          <h2 className="titulo-visita">Visitas</h2>
+        <div className="cabecalho">
+          <h2 className="titulo-cabecalho">Visitas</h2>
 
           <button className="btn-visita" onClick={abrirModalCliente}>
             <BsPlus /> criar nova visita

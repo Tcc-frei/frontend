@@ -1,41 +1,22 @@
-.pagina-visita {
+.pagina {
   background-color: #f8f9fa;
   min-height: 100dvh;
   display: flex;
 
   color: black;
 
-  .info-admin {
-    padding: 2% 5%;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: flex-end;
-
-    .admin {
-      font: 500 16px "Montserrat";
-
-      text-transform: uppercase;
-    }
-
-    .admin-img {
-      font-size: 20px;
-    }
-  }
-
   .main-content {
     width: 100dvw;
   }
 
-  .cabecalho-visita {
+  .cabecalho {
     padding: 2% 5%;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .titulo-visita {
+    .titulo-cabecalho {
       text-transform: uppercase;
       font: 500 25px "Rubik";
     }
@@ -245,7 +226,6 @@
   .container-visitas {
     padding: 2% 5%;
     display: flex;
-    // justify-content: space-between;
     gap: 14%;
 
     .visitas {
