@@ -12,13 +12,7 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
   const [servico, setServico] = useState("");
   const [precoServico, setPrecoServico] = useState("");
 
-  const [servicosAdicionados, setServicosAdicionados] = useState([
-    {
-      id: 1,
-      nome: "Troca de lampada",
-      preco: 500,
-    },
-  ]);
+  const [servicosAdicionados, setServicosAdicionados] = useState([]);
 
   const [corSpan, setCorSpan] = useState("");
 
