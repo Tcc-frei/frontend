@@ -4,9 +4,20 @@ import { Sidebar } from "../../components/sidebar";
 
 import "./styles.scss";
 import { api } from "../../service/axios";
+import { ModalVisita } from "../../components/visita-modal";
+import { ModalOrcamentoDetalhes } from "../../components/modal-orcamento-detalhe";
 
 export function OrcamentoPage() {
   const [orcamentos, setOrcamentos] = useState([]);
+  const [showDetalhesOrcamento, setShowDetalhesOrcamento] = useState(false);
+
+  const [ídOrcamento, setIdOrcamento] = useState(0);
+
+  function abrirDetalhesOrcamento(id) {
+    setIdOrcamento(id);
+
+    setShowDetalhesOrcamento(true);
+  }
 
   useEffect(() => {
     async function pegarOrcamentos() {
@@ -15,7 +26,7 @@ export function OrcamentoPage() {
 
         // console.log(resposta.data);
 
-        setOrcamentos(resposta.data);
+        setOrcamentos(resposta.data.reverse());
       } catch (error) {
         console.log(error);
       }
@@ -32,6 +43,12 @@ export function OrcamentoPage() {
         <div className="cabecalho">
           <h2 className="titulo-cabecalho">Orçamentos</h2>
         </div>
+
+        {showDetalhesOrcamento && (
+          <div className="container-modal">
+            <ModalOrcamentoDetalhes />
+          </div>
+        )}
 
         <section className="container-visitas">
           <div className="visitas">
@@ -58,6 +75,7 @@ export function OrcamentoPage() {
 
             <div className="container-cards">
               {orcamentos
+                .reverse()
                 .filter((o) => o.status === "pendente")
                 .map((o) => {
                   return (
@@ -66,6 +84,7 @@ export function OrcamentoPage() {
                       cliente={o.cliente}
                       descricao={o.descricao}
                       status={o.status}
+                      abrirDetalhes={() => abrirDetalhesOrcamento(o.id)}
                     />
                   );
                 })}
