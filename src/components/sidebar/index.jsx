@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ChevronLeft,
   Clock,
@@ -9,12 +9,16 @@ import {
 
 import "./styles.scss";
 
+import { Link, useLocation } from "react-router-dom";
+
 export function Sidebar() {
   const [sidebarAberto, setSidebarAberto] = useState(false);
 
   function abrirSidebar() {
     setSidebarAberto(!sidebarAberto);
   }
+
+  const location = useLocation();
 
   return (
     <nav className={`barra-lateral ${sidebarAberto && "aberto"}`}>
@@ -34,15 +38,28 @@ export function Sidebar() {
       </div>
 
       <ul className="lista" style={{ flex: 1 }}>
-        <li className="item-lista selecionado">
-          <Clock size={18} />
-          {sidebarAberto && <a href="">Visitas</a>}
-        </li>
+        <Link to="/">
+          <li
+            className={`item-lista ${
+              location.pathname.replace("/", "") == "" && "selecionado"
+            }`}
+          >
+            <Clock size={18} />
+            {sidebarAberto && <a href="">Visitas</a>}
+          </li>
+        </Link>
 
-        <li className="item-lista">
-          <BadgeDollarSign size={18} />
-          {sidebarAberto && <a href="">Orçamentos</a>}
-        </li>
+        <Link to="/orcamentos">
+          <li
+            className={`item-lista ${
+              location.pathname.replace("/", "") == "orcamentos" &&
+              "selecionado"
+            }`}
+          >
+            <BadgeDollarSign size={18} />
+            {sidebarAberto && <a href="">Orçamentos</a>}
+          </li>
+        </Link>
       </ul>
 
       <div className="logout-container">
