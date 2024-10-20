@@ -4,7 +4,6 @@ import { Sidebar } from "../../components/sidebar";
 
 import "./styles.scss";
 import { api } from "../../service/axios";
-import { ModalVisita } from "../../components/visita-modal";
 import { ModalOrcamentoDetalhes } from "../../components/modal-orcamento-detalhe";
 
 export function OrcamentoPage() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BiX } from "react-icons/bi";
 import { api } from "../../service/axios";
-import { Briefcase, User } from "lucide-react";
+import { User } from "lucide-react";
 
 import { format } from "date-fns";
 

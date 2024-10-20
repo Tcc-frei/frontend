@@ -2,14 +2,14 @@
   padding: 20px;
   border-radius: 4px;
   background-color: #303136;
-  width: 100%; 
-  max-width: 300px; 
+  width: 100%;
+  max-width: 300px;
   color: white;
   border-left: 5px solid #80ed99;
   transition: all 0.25s;
   position: relative;
   cursor: pointer;
-  margin: 0 auto 20px; 
+  // margin: 0 auto 20px;
   &:hover {
     transform: translateX(2px);
   }
@@ -17,22 +17,25 @@
   .info-cliente {
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap; 
+    gap: 5px;
+    flex-wrap: wrap;
     .nome-cliente {
       font: 400 13px "Rubik";
-      word-break: break-word; 
+      word-break: break-word;
     }
   }
 
   .info-card {
     margin-top: 10px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
     .desc-card {
       font: 400 14px "Rubik";
       color: #d1d1d1;
-      word-wrap: break-word; 
+      word-wrap: break-word;
     }
   }
 
@@ -49,7 +52,8 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 5px;     .icon-close {
+    padding: 5px;
+    .icon-close {
       font-size: 20px;
     }
   }
@@ -58,7 +62,7 @@
 @media (max-width: 768px) {
   .card {
     padding: 15px;
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   .btn-cancelar {
@@ -69,13 +73,13 @@
 
 @media (max-width: 480px) {
   .card {
-    padding: 10px;
-    font-size: 12px; 
+    // padding: 10px;
+    font-size: 12px;
   }
 
   .btn-cancelar {
     .icon-close {
-      font-size: 16px; 
+      font-size: 16px;
     }
   }
 }

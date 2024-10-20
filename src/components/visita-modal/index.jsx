@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
-import { visitas } from "../../mocks/visitas-mocks";
-import { BiUser, BiX } from "react-icons/bi";
 
 import "./styles.scss";
+import { api } from "../../service/axios";
+
+import { format } from "date-fns";
+import { MapPin, User, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function ModalVisita({ id, fecharModal, onClick }) {
   const [visita, setVisita] = useState(null);
 
   useEffect(() => {
-    function pegarDetalhesVisita() {
-      const visita = visitas.find((v) => v.id === id);
-      setVisita(visita);
+    async function pegarDetalhesVisita() {
+      try {
+        const resposta = await api.get(`/visita/${id}`);
+
+        setVisita(resposta.data);
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     pegarDetalhesVisita();
@@ -21,16 +29,46 @@ export function ModalVisita({ id, fecharModal, onClick }) {
       <div className="modal detalhe">
         <h2 className="titulo-modal">Detalhes do agendamento</h2>
 
-        <BiX className="close-icon" onClick={fecharModal} />
+        <X className="close-icon" onClick={fecharModal} />
 
         <div className="content-modal">
-          <div className="user-info">
-            <BiUser className="user-icon" />
+          <div className="user-info-container">
+            <div className="user-info">
+              <User className="user-icon" />
 
-            <span className="user-cliente">{visita.cliente}</span>
+              <span className="user-cliente">{visita.cliente}</span>
+            </div>
+
+            <span className="horario">
+              {format(visita.data, "d/M 'ás' hh:mm")}
+            </span>
           </div>
 
-          <p className="descricao">{visita.descricao}</p>
+          <div className="info-visita">
+            <div className="info-container">
+              <span className="info-nome">Logradouro:</span>
+
+              <p className="">{visita.logradouro}</p>
+            </div>
+
+            <div className="info-container">
+              <span className="info-nome">Bairro:</span>
+
+              <p className="">{visita.bairro}</p>
+            </div>
+
+            <div className="info-container">
+              <span className="info-nome">Localidade completa:</span>
+
+              <Link
+                className="info-cep"
+                to={`https://www.google.com/maps/search/?api=1&query=${visita.cep}`}
+                target="_blank"
+              >
+                {visita.cep} <MapPin color="white" size={18} />
+              </Link>
+            </div>
+          </div>
 
           <div className="container-buttons">
             <button className="btn excluir">Excluir agendamento</button>

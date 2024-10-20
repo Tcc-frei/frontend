@@ -1,7 +1,14 @@
 import { BiUser } from "react-icons/bi";
 import "./styles.scss";
 
-export function CardVisita({ cliente, descricao, status, abrirDetalhes }) {
+export function CardVisita({
+  cliente,
+  descricao,
+  logradouro,
+  telefone,
+  status,
+  abrirDetalhes,
+}) {
   return (
     <div
       className="card"
@@ -24,7 +31,14 @@ export function CardVisita({ cliente, descricao, status, abrirDetalhes }) {
       </div>
 
       <div className="info-card">
-        <p className="desc-card">{descricao}</p>
+        {descricao ? (
+          <p className="desc-card">{descricao}</p>
+        ) : (
+          <>
+            <p className="desc-card">Logradouro: {logradouro}</p>
+            <p className="desc-card">Telefone: {telefone}</p>
+          </>
+        )}
       </div>
     </div>
   );

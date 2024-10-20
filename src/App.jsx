@@ -16,8 +16,11 @@ import { horarios } from "./mocks/horarios-mocks.js";
 import { ModalVisita } from "./components/visita-modal/index.jsx";
 import { Sidebar } from "./components/sidebar/index.jsx";
 import { OrcamentoModal } from "./components/orcamento-modal/index.jsx";
+import { api } from "./service/axios.js";
 
 export function App() {
+  const [visitas, setVisitas] = useState([]);
+
   const [showClienteModal, setShowClienteModal] = useState(false);
   const [showHorarioModal, setShowHorarioModal] = useState(false);
   const [showVisitaModal, setShowVisitaModal] = useState(false);
@@ -106,7 +109,17 @@ export function App() {
   }
 
   useEffect(() => {
-    if (!usuarioEstaLogado()) navigate("/painel");
+    async function pegarVisitas() {
+      try {
+        const resposta = await api.get("/visitas");
+
+        setVisitas(resposta.data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    pegarVisitas();
   }, []);
 
   return (
@@ -271,19 +284,21 @@ export function App() {
             <h3 className="txt-confirmada">Confirmados</h3>
 
             <div className="container-cards">
-              {visitas
-                .filter((v) => v.status === "confirmado")
-                .map((v) => {
-                  return (
-                    <CardVisita
-                      key={v.id}
-                      cliente={v.cliente}
-                      descricao={v.descricao}
-                      status={v.status}
-                      abrirDetalhes={() => abrirDetalhesVisita(v.id)}
-                    />
-                  );
-                })}
+              {visitas.length > 0 &&
+                visitas
+                  .filter((v) => v.status === "confirmado")
+                  .map((v) => {
+                    return (
+                      <CardVisita
+                        key={v.id}
+                        cliente={v.cliente}
+                        logradouro={v.logradouro}
+                        telefone={v.telefone}
+                        status={v.status}
+                        abrirDetalhes={() => abrirDetalhesVisita(v.id)}
+                      />
+                    );
+                  })}
             </div>
           </div>
 
@@ -298,7 +313,7 @@ export function App() {
                     <CardVisita
                       key={v.id}
                       cliente={v.cliente}
-                      descricao={v.descricao}
+                      logradouro={v.logradouro}
                       status={v.status}
                     />
                   );
