@@ -17,6 +17,7 @@ import { ModalVisita } from "./components/visita-modal/index.jsx";
 import { Sidebar } from "./components/sidebar/index.jsx";
 import { OrcamentoModal } from "./components/orcamento-modal/index.jsx";
 import { api } from "./service/axios.js";
+import toast from "react-hot-toast";
 
 export function App() {
   const [visitas, setVisitas] = useState([]);
@@ -32,6 +33,11 @@ export function App() {
   const [dataSelecionada, setDataSelecionada] = useState("");
 
   const [cep, setCep] = useState("");
+
+  // dados do usuario / visita para salvar no banco
+  const [cliente, setCliente] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [numeroCasa, setNumeroCasa] = useState("");
 
   const [loadingCEP, setLoadingCEP] = useState(false);
 
@@ -99,26 +105,49 @@ export function App() {
 
   // Função para salvar o agendamento no banco de dados
   async function criarAgendamento() {
-    const dataFormatada = `${dataSelecionada}:${horaSelecionada}`;
+    try {
+      const objeto = {
+        cliente: {
+          nome: cliente,
+          telefone: telefone,
+          cep: cep,
+          numeroCasa: numeroCasa,
+          bairro: endereco.bairro,
+          logradouro: endereco.logradouro,
+        },
+        visita: {
+          data: "2024-10-20",
+        },
+      };
 
-    console.log(dataFormatada);
+      await api.post("/cadastrar/visita", objeto);
+
+      toast.success("Visita agendada com sucesso !", {
+        position: "top-right",
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setShowHorarioModal(false);
+      pegarVisitas();
+    }
   }
 
   function selecionarHorario(hora) {
     setHoraSelecionada(hora);
   }
 
-  useEffect(() => {
-    async function pegarVisitas() {
-      try {
-        const resposta = await api.get("/visitas");
+  async function pegarVisitas() {
+    try {
+      const resposta = await api.get("/visitas");
 
-        setVisitas(resposta.data);
-      } catch (e) {
-        console.error(e);
-      }
+      setVisitas(resposta.data);
+    } catch (e) {
+      console.error(e);
     }
+  }
 
+  useEffect(() => {
     pegarVisitas();
   }, []);
 
@@ -146,7 +175,12 @@ export function App() {
                 <form className="formulario">
                   <div className="grupo-input">
                     <label htmlFor="nome">NOME CLIENTE</label>
-                    <input type="text" id="nome" />
+                    <input
+                      type="text"
+                      id="nome"
+                      onChange={(e) => setCliente(e.target.value)}
+                      value={cliente}
+                    />
                   </div>
                   <div className="grupo-input">
                     <label htmlFor="bairro">BAIRRO</label>
@@ -165,6 +199,8 @@ export function App() {
                       type="text"
                       id="telefone"
                       ref={withMask("(99) 99999-9999")}
+                      onChange={(e) => setTelefone(e.target.value)}
+                      value={telefone}
                     />
                   </div>
                   <div className="grupo-input">
@@ -191,7 +227,11 @@ export function App() {
                   </div>
                   <div className="grupo-input">
                     <label htmlFor="numero">N° CASA</label>
-                    <input type="number" id="numero" />
+                    <input
+                      type="number"
+                      id="numero"
+                      onChange={(e) => setNumeroCasa(e.target.value)}
+                    />
                   </div>
 
                   <button
