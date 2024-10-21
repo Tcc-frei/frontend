@@ -44,7 +44,7 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
 
             <span className="orcamento-horario">
               {format(orcamento.data, "d/M")} -{" "}
-              {format(orcamento.data, "HH:MM")}
+              {format(orcamento.data, "HH:mm")}
             </span>
           </div>
 
@@ -85,11 +85,11 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
             </div>
 
             <div className="container-buttons">
-              <button className="btn aprovar" type="button">
-                Aprovar orçamento
-              </button>
               <button type="button" className="btn excluir">
                 Excluir orçamento
+              </button>
+              <button className="btn aprovar" type="button">
+                Aprovar orçamento
               </button>
             </div>
           </div>

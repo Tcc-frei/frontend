@@ -40,7 +40,7 @@ export function ModalVisita({ id, fecharModal, onClick }) {
             </div>
 
             <span className="horario">
-              {format(visita.data, "d/M 'ás' hh:mm")}
+              {format(visita.data, "dd/MM 'ás' hh:mm")}
             </span>
           </div>
 
@@ -48,13 +48,13 @@ export function ModalVisita({ id, fecharModal, onClick }) {
             <div className="info-container">
               <span className="info-nome">Logradouro:</span>
 
-              <p className="">{visita.logradouro}</p>
+              <p>{visita.logradouro}</p>
             </div>
 
             <div className="info-container">
               <span className="info-nome">Bairro:</span>
 
-              <p className="">{visita.bairro}</p>
+              <p>{visita.bairro}</p>
             </div>
 
             <div className="info-container">
