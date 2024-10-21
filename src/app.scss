@@ -61,12 +61,16 @@
     justify-content: center;
 
     .modal {
+      
       min-width: 620px;
       background-color: #212225;
       padding: 20px;
       border-radius: 5px;
       position: relative;
       color: white;
+      @media (max-width: 685px) {
+        min-width: auto;
+      }
 
       .close-icon {
         position: absolute;
@@ -99,6 +103,11 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 15px;
+
+        @media (max-width: 685px) {
+          grid-template-columns: 1fr;
+        }
+
 
         .grupo-input {
           display: flex;
@@ -152,6 +161,7 @@
   }
 
   .container-modal.horario {
+    padding: 30px;
     .subtitulo-modal {
       font: 400 13px "Rubik";
       color: #f1f1f1;
@@ -186,6 +196,7 @@
       }
 
       .container-horarios {
+        min-width: auto;
         margin-top: 15px;
         margin-bottom: 15px;
         max-width: 70%;

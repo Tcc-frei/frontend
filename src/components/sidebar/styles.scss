@@ -1,6 +1,12 @@
 .barra-lateral.aberto {
-  min-width: 15%;
+  transition: all 0.9s;
 
+  min-width: 15%;
+  @media (max-width: 710px) {
+    min-width: 30%;
+    position: absolute;
+    
+  }
   .btn-barra {
     transform: rotate(-180deg);
   }
@@ -20,7 +26,7 @@
   background-color: #212225;
   color: #fff;
   min-height: 100%;
-  // min-width: 15%;
+  // min-width: 30%;
   min-width: 10px;
   // padding: 20px;
   z-index: 999;
@@ -29,7 +35,7 @@
   left: 0;
   top: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.5s;
+  transition: all 0.9s;
 
   display: flex;
   flex-direction: column;
