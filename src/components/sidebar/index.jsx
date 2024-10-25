@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import {
   ChevronLeft,
   Clock,
@@ -44,7 +45,7 @@ export function Sidebar() {
               location.pathname.replace("/", "") == "" && "selecionado"
             }`}
           >
-            <Clock size={18} />
+            <Clock size={18} color="white" />
             {sidebarAberto && <a href="">Visitas</a>}
           </li>
         </Link>
@@ -56,7 +57,7 @@ export function Sidebar() {
               "selecionado"
             }`}
           >
-            <BadgeDollarSign size={18} />
+            <BadgeDollarSign size={18} color="white" />
             {sidebarAberto && <a href="">Orçamentos</a>}
           </li>
         </Link>
@@ -64,7 +65,7 @@ export function Sidebar() {
 
       <div className="logout-container">
         <button className="btn-sair">
-          <LogOut size={20} />
+          <LogOut size={20} color="white" />
           {sidebarAberto && <span>Sair</span>}
         </button>
       </div>

@@ -29,6 +29,10 @@ body {
   height: 100dvh;
 }
 
+input {
+  color: white;
+}
+
 .btn {
   width: fit-content;
   padding: 10px 30px;

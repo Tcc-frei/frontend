@@ -100,10 +100,11 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
                 maxLength={250}
                 onChange={(e) => setDescricao(e.target.value)}
                 value={descricao}
+                className="input-descricao"
                 placeholder="Descreva aqui quaisquer problemas ou necessidades específicas que o cliente tenha mencionado durante a visita."
               ></textarea>
 
-              <span style={{ color: corSpan }}>{descricao.length}/250</span>
+              <span style={{ color: corSpan }} className="tamanho-desc">{descricao.length}/250</span>
 
               <button type="button" className="btn" onClick={criarOrcamento}>
                 cadastrar orçamento

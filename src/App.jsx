@@ -3,11 +3,9 @@ import "./app.scss";
 
 import { useNavigate } from "react-router-dom";
 
-import { usuarioEstaLogado } from "./service/auth.js";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { CardVisita } from "./components/card-visita/index.jsx";
-import { visitas } from "./mocks/visitas-mocks.js";
 
 import { withMask } from "use-mask-input";
 
