@@ -40,7 +40,7 @@ export function ModalVisita({ id, fecharModal, onClick }) {
             </div>
 
             <span className="horario">
-              {format(visita.data, "dd/MM 'ás' hh:mm")}
+              {format(visita.data, "dd/MM 'ás' H:mm")}
             </span>
           </div>
 

@@ -104,6 +104,8 @@ export function App() {
   // Função para salvar o agendamento no banco de dados
   async function criarAgendamento() {
     try {
+      const dataFormatada = `${dataSelecionada}:${horaSelecionada}`;
+
       const objeto = {
         cliente: {
           nome: cliente,
@@ -114,7 +116,7 @@ export function App() {
           logradouro: endereco.logradouro,
         },
         visita: {
-          data: "2024-10-20",
+          data: dataFormatada
         },
       };
 
