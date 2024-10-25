@@ -68,6 +68,7 @@ export function OrcamentoPage() {
                       cliente={o.cliente}
                       descricao={o.descricao}
                       status={o.status}
+                      abrirDetalhes={() => abrirDetalhesOrcamento(o.id)}
                     />
                   );
                 })}

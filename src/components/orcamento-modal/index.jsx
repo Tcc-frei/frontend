@@ -55,8 +55,14 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
 
   async function criarOrcamento() {
     try {
-      const arrayIdServicos = servicosAdicionados.map((m) => m.id);
+      if (servicosAdicionados.length <= 0) {
+        return toast.error("Não é possivel criar um orçamento sem serviço", {
+          position: "top-right"
+        });
+      }
 
+      const arrayIdServicos = servicosAdicionados.map((m) => m.id);
+      
       const resposta = await api.post(`/orcamento/${idVisita}`, {
         descricao: descricao,
         arrayServicos: arrayIdServicos,

@@ -9,12 +9,15 @@ export function CardVisita({
   status,
   abrirDetalhes,
 }) {
+
   return (
     <div
       className="card"
       style={{
         borderLeft: `5px solid ${
           status === "confirmado"
+            ? "#80ed99"
+            : status === "aprovado" 
             ? "#80ed99"
             : status === "pendente"
             ? "#ff9d00"
