@@ -54,7 +54,7 @@ export function Sidebar() {
             }`}
           >
             <Clock size={18} color="white" />
-            {sidebarAberto && <a href="">Visitas</a>}
+            {sidebarAberto && <a href="" className="label-lista">Visitas</a>}
           </li>
         </Link>
 
@@ -66,7 +66,7 @@ export function Sidebar() {
             }`}
           >
             <BadgeDollarSign size={18} color="white" />
-            {sidebarAberto && <a href="">Orçamentos</a>}
+            {sidebarAberto && <a href="" className="label-lista" >Orçamentos</a>}
           </li>
         </Link>
       </ul>
