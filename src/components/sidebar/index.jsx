@@ -10,10 +10,18 @@ import {
 
 import "./styles.scss";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function Sidebar() {
   const [sidebarAberto, setSidebarAberto] = useState(false);
+
+  const navigate = useNavigate();
+
+  function loggout(){
+    localStorage.clear("token");
+
+    navigate("/painel")
+  }
 
   function abrirSidebar() {
     setSidebarAberto(!sidebarAberto);
@@ -64,7 +72,7 @@ export function Sidebar() {
       </ul>
 
       <div className="logout-container">
-        <button className="btn-sair">
+        <button className="btn-sair" onClick={loggout} >
           <LogOut size={20} color="white" />
           {sidebarAberto && <span>Sair</span>}
         </button>

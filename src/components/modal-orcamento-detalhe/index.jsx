@@ -7,25 +7,58 @@ import { format } from "date-fns";
 
 import "./styles.scss";
 import { CardServico } from "../card-servico";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export function ModalOrcamentoDetalhes({ fecharModal, id }) {
   const [orcamento, setOrcamento] = useState(null);
   const [servicosOrcamento, setServicosOrcamentos] = useState([]);
 
-  useEffect(() => {
-    async function pegarOrcamentoPeloId(id) {
-      try {
-        const resposta = await api.get(`/orcamento/${id}`);
+  const navigate = useNavigate();
 
-        const { orcamento, servicos } = resposta.data;
+  async function deletarOrcamento(id){
+    try {
+      await api.delete(`/orcamento/${id}`)
 
-        setOrcamento(orcamento);
-        setServicosOrcamentos(servicos);
-      } catch (error) {
-        console.log(error);
-      }
+      toast.success("Orçamento deletado", {
+        position: "top-right"
+      })
+
+      navigate(0)
+    } catch (e)  {
+      console.log(e)
+    } 
+  }
+
+  async function atualizarStatusOrcamento(id){
+    try {
+      await api.get(`/orcamento/status/${id}`);
+
+      toast.success("Status atualizado com sucesso !", {
+        position: "top-right"
+      })
+
+      fecharModal();
+      navigate(0)
+    } catch (erro) {
+      console.log(erro);
     }
+  }
 
+  async function pegarOrcamentoPeloId(id) {
+    try {
+      const resposta = await api.get(`/orcamento/${id}`);
+
+      const { orcamento, servicos } = resposta.data;
+
+      setOrcamento(orcamento);
+      setServicosOrcamentos(servicos);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
     pegarOrcamentoPeloId(id);
   }, []);
 
@@ -85,12 +118,16 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
             </div>
 
             <div className="container-buttons">
-              <button type="button" className="btn excluir">
+              <button type="button" className="btn" onClick={() => deletarOrcamento(orcamento.id)} >
                 Excluir orçamento
               </button>
-              <button className="btn aprovar" type="button">
+              {orcamento.status === "pendente" ? (
+                <button className="btn aprovar" type="button" onClick={() => atualizarStatusOrcamento(orcamento.id)} >
                 Aprovar orçamento
               </button>
+              ) : <button className="btn aprovar" type="button">
+              Finalizar
+            </button>}
             </div>
           </div>
         </div>
