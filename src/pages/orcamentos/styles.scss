@@ -1,5 +1,4 @@
 .container-visitas {
-  
   .visitas {
     .txt-pendente {
       font: 400 15px "Rubik";
@@ -9,8 +8,8 @@
 
       &::before {
         content: "";
-        width: 0.625rem;
-        height: 0.625rem;
+        width: 10px;
+        height: 10px;
         background-color: #ff9d00;
         display: block;
         border-radius: 50%;
@@ -26,8 +25,8 @@
     .visitas {
       .txt-pendente {
         &::before {
-          width: 0.59rem;
-          height: 0.59rem;
+          width: 10px;
+          height: 10px;
         }
       }
     }
@@ -40,8 +39,8 @@
     .visitas {
       .txt-pendente {
         &::before {
-          width: 0.5rem;
-          height: 0.5rem;
+          width: 10px;
+          height: 10px;
         }
       }
     }
@@ -53,12 +52,12 @@
   .container-visitas {
     display: flex;
     flex-direction: column;
-    
+
     .visitas {
       .txt-pendente {
         &::before {
-          width: 0.44rem;
-          height: 0.44rem;
+          width: 10px;
+          height: 10px;
         }
       }
     }
@@ -71,8 +70,8 @@
     .visitas {
       .txt-pendente {
         &::before {
-          width: 0.375rem;
-          height: 0.375rem;
+          width: 10px;
+          height: 10px;
         }
       }
     }

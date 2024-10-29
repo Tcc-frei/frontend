@@ -32,13 +32,18 @@
           align-items: center;
           gap: 5px;
 
-          &::before {
-            content: "";
+          .status.aprovado {
+            background-color: #80ed99;
             width: 8px;
             height: 8px;
             border-radius: 50%;
+          }
+
+          .status.pendente {
             background-color: #ff9d00;
-            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
           }
         }
 

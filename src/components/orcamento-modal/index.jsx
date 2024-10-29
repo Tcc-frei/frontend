@@ -6,11 +6,14 @@ import { api } from "../../service/axios";
 import "./styles.scss";
 import toast from "react-hot-toast";
 import { Trash } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function OrcamentoModal({ fecharModal, idVisita }) {
   const [descricao, setDescricao] = useState("");
   const [servico, setServico] = useState("");
   const [precoServico, setPrecoServico] = useState("");
+
+  const navigate = useNavigate();
 
   const [servicosAdicionados, setServicosAdicionados] = useState([]);
 
@@ -57,12 +60,12 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
     try {
       if (servicosAdicionados.length <= 0) {
         return toast.error("Não é possivel criar um orçamento sem serviço", {
-          position: "top-right"
+          position: "top-right",
         });
       }
 
       const arrayIdServicos = servicosAdicionados.map((m) => m.id);
-      
+
       const resposta = await api.post(`/orcamento/${idVisita}`, {
         descricao: descricao,
         arrayServicos: arrayIdServicos,
@@ -73,6 +76,8 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
           position: "top-right",
         });
       }
+
+      navigate("/orcamentos");
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +115,9 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
                 placeholder="Descreva aqui quaisquer problemas ou necessidades específicas que o cliente tenha mencionado durante a visita."
               ></textarea>
 
-              <span style={{ color: corSpan }} className="tamanho-desc">{descricao.length}/250</span>
+              <span style={{ color: corSpan }} className="tamanho-desc">
+                {descricao.length}/250
+              </span>
 
               <button type="button" className="btn" onClick={criarOrcamento}>
                 cadastrar orçamento

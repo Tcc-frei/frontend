@@ -16,30 +16,30 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
 
   const navigate = useNavigate();
 
-  async function deletarOrcamento(id){
+  async function deletarOrcamento(id) {
     try {
-      await api.delete(`/orcamento/${id}`)
+      await api.delete(`/orcamento/${id}`);
 
       toast.success("Orçamento deletado", {
-        position: "top-right"
-      })
+        position: "top-right",
+      });
 
-      navigate(0)
-    } catch (e)  {
-      console.log(e)
-    } 
+      navigate(0);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
-  async function atualizarStatusOrcamento(id){
+  async function atualizarStatusOrcamento(id) {
     try {
       await api.get(`/orcamento/status/${id}`);
 
       toast.success("Status atualizado com sucesso !", {
-        position: "top-right"
-      })
+        position: "top-right",
+      });
 
       fecharModal();
-      navigate(0)
+      navigate(0);
     } catch (erro) {
       console.log(erro);
     }
@@ -86,9 +86,15 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
               <span>Situação:</span>
 
               <p className="info-status">
+                <div
+                  className={`status ${
+                    orcamento.status == "pendente" ? "pendente" : "aprovado"
+                  }`}
+                ></div>
+
                 {orcamento.status === "pendente"
                   ? "Aguardando aprovação do cliente"
-                  : "Orçamento aprovado"}
+                  : "Aprovado"}
               </p>
             </div>
 
@@ -118,16 +124,26 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
             </div>
 
             <div className="container-buttons">
-              <button type="button" className="btn" onClick={() => deletarOrcamento(orcamento.id)} >
+              <button
+                type="button"
+                className="btn"
+                onClick={() => deletarOrcamento(orcamento.id)}
+              >
                 Excluir orçamento
               </button>
               {orcamento.status === "pendente" ? (
-                <button className="btn aprovar" type="button" onClick={() => atualizarStatusOrcamento(orcamento.id)} >
-                Aprovar orçamento
-              </button>
-              ) : <button className="btn aprovar" type="button">
-              Finalizar
-            </button>}
+                <button
+                  className="btn aprovar"
+                  type="button"
+                  onClick={() => atualizarStatusOrcamento(orcamento.id)}
+                >
+                  Aprovar orçamento
+                </button>
+              ) : (
+                <button className="btn aprovar" type="button">
+                  Finalizar
+                </button>
+              )}
             </div>
           </div>
         </div>
