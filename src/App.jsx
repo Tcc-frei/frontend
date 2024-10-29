@@ -116,7 +116,7 @@ export function App() {
           logradouro: endereco.logradouro,
         },
         visita: {
-          data: dataFormatada
+          data: dataFormatada,
         },
       };
 
@@ -146,6 +146,26 @@ export function App() {
       console.error(e);
     }
   }
+
+  useEffect(() => {
+    async function usuarioEstaLogado() {
+      try {
+        const token = localStorage.getItem("TOKEN");
+
+        const resposta = await api.get("/elethronos/validar", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (resposta.status != 204) navigate("/painel");
+      } catch (e) {
+        navigate("/painel");
+      }
+    }
+
+    usuarioEstaLogado();
+  }, []);
 
   useEffect(() => {
     pegarVisitas();

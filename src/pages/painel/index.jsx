@@ -17,11 +17,11 @@ export function Painel() {
 
   const navigate = useNavigate();
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
 
     try {
-      entrar(email, senha);
+      await entrar(email, senha);
 
       navigate("/");
     } catch (error) {

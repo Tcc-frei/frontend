@@ -1,18 +1,16 @@
-export function entrar(email, senha) {
+import { api } from "../service/axios.js";
+
+export async function entrar(email, senha) {
   try {
-    if (email === "rodrigo@gmail.com" && senha === "123") {
-      localStorage.setItem("token", "token_aleatorio");
-    } else {
-      throw new Error("Credenciais invalidas !")
-    }
+    const response = await api.post("/elethronos/entrar", {
+      email,
+      senha,
+    });
 
+    const { token } = response.data;
+
+    localStorage.setItem("TOKEN", token);
   } catch (error) {
-    console.error(error)
+    console.log(error);
   }
-}
-
-export function usuarioEstaLogado() {
-  const token = localStorage.getItem("token");
-
-  return token != null && token != "";
 }

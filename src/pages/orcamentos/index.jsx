@@ -5,12 +5,15 @@ import { Sidebar } from "../../components/sidebar";
 import "./styles.scss";
 import { api } from "../../service/axios";
 import { ModalOrcamentoDetalhes } from "../../components/modal-orcamento-detalhe";
+import { useNavigate } from "react-router-dom";
 
 export function OrcamentoPage() {
   const [orcamentos, setOrcamentos] = useState([]);
   const [showDetalhesOrcamento, setShowDetalhesOrcamento] = useState(false);
 
   const [ídOrcamento, setIdOrcamento] = useState(0);
+
+  const navigate = useNavigate();
 
   function abrirDetalhesOrcamento(id) {
     setIdOrcamento(id);
@@ -21,15 +24,39 @@ export function OrcamentoPage() {
   const fecharModalDetalhes = () => setShowDetalhesOrcamento(false);
 
   useEffect(() => {
-    async function pegarOrcamentos() {
+    async function usuarioEstaLogado() {
       try {
-        const resposta = await api.get("/orcamentos");
+        const token = localStorage.getItem("TOKEN");
+
+        await api.get("/elethronos/validar", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      } catch (e) {
+        navigate("/painel");
+      }
+    }
+
+    usuarioEstaLogado();
+  }, []);
+
+  useEffect(() => {
+    async function pegarOrcamentos() {
+      const token = localStorage.getItem("TOKEN");
+
+      try {
+        const resposta = await api.get("/orcamentos", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // console.log(resposta.data);
 
         setOrcamentos(resposta.data.reverse());
       } catch (error) {
-        console.log(error);
+        navigate("/painel");
       }
     }
 
