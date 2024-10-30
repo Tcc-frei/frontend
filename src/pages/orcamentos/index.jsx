@@ -6,6 +6,7 @@ import "./styles.scss";
 import { api } from "../../service/axios";
 import { ModalOrcamentoDetalhes } from "../../components/modal-orcamento-detalhe";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function OrcamentoPage() {
   const [orcamentos, setOrcamentos] = useState([]);
@@ -23,27 +24,9 @@ export function OrcamentoPage() {
 
   const fecharModalDetalhes = () => setShowDetalhesOrcamento(false);
 
-  // useEffect(() => {
-  //   async function usuarioEstaLogado() {
-  //     try {
-  //       const token = localStorage.getItem("TOKEN");
-
-  //       await api.get("/elethronos/validar", {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-  //     } catch (e) {
-  //       navigate("/painel");
-  //     }
-  //   }
-
-  //   usuarioEstaLogado();
-  // }, []);
-
   useEffect(() => {
     async function pegarOrcamentos() {
-      const token = localStorage.getItem("TOKEN");
+      const token = localStorage.getItem("usuario");
 
       try {
         const resposta = await api.get("/orcamentos", {
@@ -52,11 +35,12 @@ export function OrcamentoPage() {
           },
         });
 
-        // console.log(resposta.data);
-
         setOrcamentos(resposta.data.reverse());
       } catch (error) {
         // navigate("/painel");
+        toast.error("Ocorreu um erro ao buscar os orçamentos", {
+          position: "top-right",
+        });
       }
     }
 

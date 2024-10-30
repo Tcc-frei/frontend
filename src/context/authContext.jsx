@@ -4,7 +4,7 @@ import { api } from "../service/axios";
 
 export const AuthContext = createContext({
   usuarioLogado: false,
-  entrar: (email, senha) => {},
+  entrar: () => {},
   sair: () => {},
 });
 
@@ -19,9 +19,6 @@ export function AuthProvider({ children }) {
       });
 
       const { token } = response.data;
-
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
       localStorage.setItem("usuario", token);
 
       setUsuarioLogado(!!token);
