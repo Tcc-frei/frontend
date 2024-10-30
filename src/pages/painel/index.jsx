@@ -6,10 +6,12 @@ import imgCadeado from "../../assets/logo-key.svg";
 
 import { LuKeyRound } from "react-icons/lu";
 
-import { entrar } from "../../service/auth.js";
 import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Painel() {
+  const { entrar } = useAuth();
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -21,7 +23,7 @@ export function Painel() {
     e.preventDefault();
 
     try {
-      await entrar(email, senha);
+      entrar(email, senha);
 
       navigate("/");
     } catch (error) {
@@ -38,9 +40,7 @@ export function Painel() {
 
         <img src={imgCadeado} alt="Logo de um cadeado" width={200} />
 
-        <span className="mensagem">
-          Bem-vindo ao portal administrativo da Elethronos.
-        </span>
+        <span className="mensagem">Portal administrativo da Elethronos.</span>
       </div>
       <div className="conteudo-direito">
         <div className="titulo">

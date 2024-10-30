@@ -1,20 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import { rotasPrivadas } from "./routes/rotasPrivadas";
+import { rotasPublicas } from "./routes/rotasPublicas";
+import { useAuth } from "./hooks/useAuth";
 
-import { App } from "./App";
-import { Painel } from "./pages/painel";
-import { OrcamentoPage } from "./pages/orcamentos";
+export function Navegacao() {
+  const { usuarioLogado } = useAuth();
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/orcamentos",
-    element: <OrcamentoPage />,
-  },
-  {
-    path: "/painel",
-    element: <Painel />,
-  },
-]);
+  return (
+    <RouterProvider router={usuarioLogado ? rotasPrivadas : rotasPublicas} />
+  );
+}

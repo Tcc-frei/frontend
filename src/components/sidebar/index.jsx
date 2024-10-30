@@ -12,15 +12,19 @@ import "./styles.scss";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import { useAuth } from "../../hooks/useAuth.js";
+
 export function Sidebar() {
   const [sidebarAberto, setSidebarAberto] = useState(false);
 
+  const { sair } = useAuth();
+
   const navigate = useNavigate();
 
-  function loggout(){
-    localStorage.clear("token");
+  function deslogarAutonomo() {
+    sair();
 
-    navigate("/painel")
+    navigate("/painel");
   }
 
   function abrirSidebar() {
@@ -54,7 +58,11 @@ export function Sidebar() {
             }`}
           >
             <Clock size={18} color="white" />
-            {sidebarAberto && <a href="" className="label-lista">Visitas</a>}
+            {sidebarAberto && (
+              <a href="" className="label-lista">
+                Visitas
+              </a>
+            )}
           </li>
         </Link>
 
@@ -66,13 +74,17 @@ export function Sidebar() {
             }`}
           >
             <BadgeDollarSign size={18} color="white" />
-            {sidebarAberto && <a href="" className="label-lista" >Orçamentos</a>}
+            {sidebarAberto && (
+              <a href="" className="label-lista">
+                Orçamentos
+              </a>
+            )}
           </li>
         </Link>
       </ul>
 
       <div className="logout-container">
-        <button className="btn-sair" onClick={loggout} >
+        <button className="btn-sair" onClick={deslogarAutonomo}>
           <LogOut size={20} color="white" />
           {sidebarAberto && <span>Sair</span>}
         </button>

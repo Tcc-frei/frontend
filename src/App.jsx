@@ -147,25 +147,25 @@ export function App() {
     }
   }
 
-  useEffect(() => {
-    async function usuarioEstaLogado() {
-      try {
-        const token = localStorage.getItem("TOKEN");
+  // useEffect(() => {
+  //   async function usuarioEstaLogado() {
+  //     try {
+  //       const token = localStorage.getItem("TOKEN");
 
-        const resposta = await api.get("/elethronos/validar", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  //       const resposta = await api.get("/elethronos/validar", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
 
-        if (resposta.status != 204) navigate("/painel");
-      } catch (e) {
-        navigate("/painel");
-      }
-    }
+  //       if (resposta.status != 204) navigate("/painel");
+  //     } catch (e) {
+  //       navigate("/painel");
+  //     }
+  //   }
 
-    usuarioEstaLogado();
-  }, []);
+  //   usuarioEstaLogado();
+  // }, []);
 
   useEffect(() => {
     pegarVisitas();

@@ -23,23 +23,23 @@ export function OrcamentoPage() {
 
   const fecharModalDetalhes = () => setShowDetalhesOrcamento(false);
 
-  useEffect(() => {
-    async function usuarioEstaLogado() {
-      try {
-        const token = localStorage.getItem("TOKEN");
+  // useEffect(() => {
+  //   async function usuarioEstaLogado() {
+  //     try {
+  //       const token = localStorage.getItem("TOKEN");
 
-        await api.get("/elethronos/validar", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-      } catch (e) {
-        navigate("/painel");
-      }
-    }
+  //       await api.get("/elethronos/validar", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //     } catch (e) {
+  //       navigate("/painel");
+  //     }
+  //   }
 
-    usuarioEstaLogado();
-  }, []);
+  //   usuarioEstaLogado();
+  // }, []);
 
   useEffect(() => {
     async function pegarOrcamentos() {
@@ -56,7 +56,7 @@ export function OrcamentoPage() {
 
         setOrcamentos(resposta.data.reverse());
       } catch (error) {
-        navigate("/painel");
+        // navigate("/painel");
       }
     }
 
