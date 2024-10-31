@@ -80,7 +80,7 @@
         background-color: #161618;
         padding: 5px;
         border-radius: 5px;
-        font: 300 15px "Rubik";
+        font: 400 15px "Rubik";
         // cursor: pointer;
         // font-size: 14px;
 
@@ -106,4 +106,38 @@
 
 .modal.servicos {
   min-width: auto !important;
+}
+
+@media (max-width: 920px) {
+  .container-modais {
+    display: flex;
+    flex-direction: column;
+
+    // .modal.orcamento {
+    //   .content-modal form {
+    //     flex-direction: column;
+    //   }
+    // }
+  }
+}
+
+@media (max-width: 500px) {
+  .modal.orcamento {
+    .content-modal form {
+      flex-direction: column;
+
+      .container-esquerdo {
+        order: 2;
+      }
+
+      .container-direito {
+        order: 1;
+      }
+
+      .btn {
+        width: auto;
+        justify-content: center;
+      }
+    }
+  }
 }

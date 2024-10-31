@@ -127,6 +127,9 @@ export function App() {
       });
     } catch (e) {
       console.log(e);
+      toast.error("Ocorreu um erro ao criar o agendamento.", {
+        position: "top-right",
+      });
     } finally {
       setShowHorarioModal(false);
       pegarVisitas();
@@ -144,28 +147,12 @@ export function App() {
       setVisitas(resposta.data);
     } catch (e) {
       console.error(e);
+
+      toast.error("Ocorreu um ao buscar os agendamentos.", {
+        position: "top-right",
+      });
     }
   }
-
-  // useEffect(() => {
-  //   async function usuarioEstaLogado() {
-  //     try {
-  //       const token = localStorage.getItem("TOKEN");
-
-  //       const resposta = await api.get("/elethronos/validar", {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-
-  //       if (resposta.status != 204) navigate("/painel");
-  //     } catch (e) {
-  //       navigate("/painel");
-  //     }
-  //   }
-
-  //   usuarioEstaLogado();
-  // }, []);
 
   useEffect(() => {
     pegarVisitas();
