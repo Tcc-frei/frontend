@@ -61,7 +61,6 @@
     justify-content: center;
 
     .modal {
-      
       min-width: 620px;
       background-color: #212225;
       padding: 20px;
@@ -69,7 +68,7 @@
       position: relative;
       color: white;
       @media (max-width: 685px) {
-        min-width: auto;
+        min-width: 300px !important;
       }
 
       .close-icon {
@@ -107,7 +106,6 @@
         @media (max-width: 685px) {
           grid-template-columns: 1fr;
         }
-
 
         .grupo-input {
           display: flex;

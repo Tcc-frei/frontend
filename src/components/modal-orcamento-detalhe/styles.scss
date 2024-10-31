@@ -1,5 +1,5 @@
 .modal.detalhe.orcamento {
-  max-width: 500px !important;
+  max-width: 500px;
 
   .content-modal {
     .user-info-container {
@@ -100,8 +100,15 @@
   }
 }
 
+// responsividade do modal
 @media (max-width: 760px) {
   .modal.detalhe.orcamento {
-    max-width: 400px !important;
+    min-width: 350px !important;
+
+    .container-buttons {
+      .btn {
+        padding: 10px !important;
+      }
+    }
   }
 }
