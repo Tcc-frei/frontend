@@ -91,11 +91,9 @@ export function App() {
         logradouro: resposta.data.logradouro,
       });
     } catch (error) {
-      // const { errors } = error.response.data;
-
-      console.log(error);
-
-      // console.log(error.response.data);
+      toast.error("Ocorreu um erro ao buscar o CEP inserido.", {
+        position: "top-right",
+      });
     } finally {
       setLoadingCEP(false);
     }
@@ -126,7 +124,6 @@ export function App() {
         position: "top-right",
       });
     } catch (e) {
-      console.log(e);
       toast.error("Ocorreu um erro ao criar o agendamento.", {
         position: "top-right",
       });
@@ -146,8 +143,6 @@ export function App() {
 
       setVisitas(resposta.data);
     } catch (e) {
-      console.error(e);
-
       toast.error("Ocorreu um ao buscar os agendamentos.", {
         position: "top-right",
       });

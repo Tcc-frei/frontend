@@ -64,22 +64,21 @@ export function OrcamentoModal({ fecharModal, idVisita }) {
         });
       }
 
+      if (!descricao.trim())
+        return toast.error("Faça uma breve descrição do orçamento.");
+
       const arrayIdServicos = servicosAdicionados.map((m) => m.id);
 
-      const resposta = await api.post(`/orcamento/${idVisita}`, {
+      await api.post(`/orcamento/${idVisita}`, {
         descricao: descricao,
         arrayServicos: arrayIdServicos,
       });
 
-      if (resposta.status === 201) {
-        toast.success("Orçamento criado com sucesso !", {
-          position: "top-right",
-        });
-      }
-
       navigate("/orcamentos");
     } catch (error) {
-      console.log(error);
+      toast.error("Ocorreu um erro ao criar o orçamento.", {
+        position: "top-right",
+      });
     }
   }
 

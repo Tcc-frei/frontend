@@ -5,10 +5,13 @@ import { api } from "../../service/axios";
 
 import { format } from "date-fns";
 import { MapPin, User, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function ModalVisita({ id, fecharModal, onClick }) {
   const [visita, setVisita] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function pegarDetalhesVisita() {
@@ -23,6 +26,18 @@ export function ModalVisita({ id, fecharModal, onClick }) {
 
     pegarDetalhesVisita();
   }, [id]);
+
+  async function deletarVisita() {
+    try {
+      await api.delete(`/visita/${id}`);
+
+      navigate(0);
+    } catch (e) {
+      toast.error("Ocorreu um erro ao deletar a visita.", {
+        position: "top-right",
+      });
+    }
+  }
 
   return (
     visita && (
@@ -71,7 +86,9 @@ export function ModalVisita({ id, fecharModal, onClick }) {
           </div>
 
           <div className="container-buttons">
-            <button className="btn excluir">Excluir agendamento</button>
+            <button className="btn excluir" onClick={() => deletarVisita(id)}>
+              Excluir agendamento
+            </button>
             <button className="btn salvar" onClick={onClick}>
               Fazer orçamento
             </button>
