@@ -99,3 +99,9 @@
     }
   }
 }
+
+@media (max-width: 760px) {
+  .modal.detalhe.orcamento {
+    max-width: 400px !important;
+  }
+}

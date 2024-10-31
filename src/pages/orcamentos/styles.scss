@@ -1,4 +1,6 @@
 .container-visitas {
+  padding: 20px;
+
   .visitas {
     .txt-pendente {
       font: 400 15px "Rubik";
@@ -49,9 +51,14 @@
 
 // Smartphones
 @media (max-width: 480px) {
+  .main-content {
+    padding: 3%;
+  }
+
   .container-visitas {
     display: flex;
     flex-direction: column;
+    gap: 30px !important;
 
     .visitas {
       .txt-pendente {
