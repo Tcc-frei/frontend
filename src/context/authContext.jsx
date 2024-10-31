@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../service/axios";
 
 export const AuthContext = createContext({
+  erro: null,
   usuarioLogado: false,
   entrar: () => {},
   sair: () => {},
@@ -10,6 +11,7 @@ export const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   const [usuarioLogado, setUsuarioLogado] = useState(false);
+  const [erro, setErro] = useState(null);
 
   const entrar = async (email, senha) => {
     try {
@@ -23,7 +25,7 @@ export function AuthProvider({ children }) {
 
       setUsuarioLogado(!!token);
     } catch (e) {
-      console.log(e);
+      setErro(e.response.data.erro);
     }
   };
 
@@ -50,7 +52,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ usuarioLogado, entrar, sair }}>
+    <AuthContext.Provider value={{ usuarioLogado, entrar, sair, erro }}>
       {children}
     </AuthContext.Provider>
   );

@@ -10,25 +10,19 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 export function Painel() {
-  const { entrar } = useAuth();
+  const { entrar, erro } = useAuth();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  const [erro, setErro] = useState("");
 
   const navigate = useNavigate();
 
   async function onSubmit(e) {
     e.preventDefault();
 
-    try {
-      entrar(email, senha);
+    entrar(email, senha); // ta vindo la do contexto.
 
-      navigate("/");
-    } catch (error) {
-      setErro(error.message);
-    }
+    navigate("/");
   }
 
   return (
@@ -61,7 +55,7 @@ export function Painel() {
             onChange={(e) => setSenha(e.target.value)}
           />
 
-          <p className="msg-erro">{erro}</p>
+          {!!erro && <p className="msg-erro">{erro}</p>}
 
           <button onClick={onSubmit} className="botao-entrar" type="submit">
             Entrar
