@@ -31,6 +31,7 @@ export function AuthProvider({ children }) {
 
   const sair = () => {
     localStorage.removeItem("usuario");
+    setUsuarioLogado(false);
   };
 
   const verificarUsuarioLogado = async () => {

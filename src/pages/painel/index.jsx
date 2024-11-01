@@ -47,12 +47,14 @@ export function Painel() {
             type="email"
             placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
 
           <input
             type="password"
             placeholder="Senha"
             onChange={(e) => setSenha(e.target.value)}
+            value={senha}
           />
 
           {!!erro && <p className="msg-erro">{erro}</p>}
