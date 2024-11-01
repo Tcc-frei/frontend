@@ -34,7 +34,7 @@ export function Painel() {
 
         <img src={imgCadeado} alt="Logo de um cadeado" width={200} />
 
-        <span className="mensagem">Portal administrativo da Elethronos.</span>
+        <span className="mensagem">Portal administrativo da Elethronos!</span>
       </div>
       <div className="conteudo-direito">
         <div className="titulo">
