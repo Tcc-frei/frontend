@@ -39,7 +39,7 @@ export function Painel() {
       <div className="conteudo-direito">
         <div className="titulo">
           <LuKeyRound />
-          <h3>Painel de administrador</h3>
+          <h3>Painel do administrador</h3>
         </div>
 
         <form className="formulario">
