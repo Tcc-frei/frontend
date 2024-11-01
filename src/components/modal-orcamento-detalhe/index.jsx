@@ -30,9 +30,11 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
     }
   }
 
-  async function atualizarStatusOrcamento(id) {
+  async function aprovarOrcamento(id) {
     try {
-      await api.get(`/orcamento/status/${id}`);
+      await api.put(`/orcamento/status/${id}`, {
+        status: "aprovado",
+      });
 
       toast.success("Status atualizado com sucesso !", {
         position: "top-right",
@@ -41,7 +43,28 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
       fecharModal();
       navigate(0);
     } catch (erro) {
-      console.log(erro);
+      toast.error("Ocorreu um erro ao atualizar o status.", {
+        position: "top-right",
+      });
+    }
+  }
+
+  async function finalizarOrcamento(id) {
+    try {
+      await api.put(`/orcamento/status/${id}`, {
+        status: "finalizado",
+      });
+
+      toast.success("Status atualizado com sucesso !", {
+        position: "top-right",
+      });
+
+      fecharModal();
+      navigate(0);
+    } catch (erro) {
+      toast.error("Ocorreu um erro ao atualizar o status.", {
+        position: "top-right",
+      });
     }
   }
 
@@ -135,12 +158,16 @@ export function ModalOrcamentoDetalhes({ fecharModal, id }) {
                 <button
                   className="btn aprovar"
                   type="button"
-                  onClick={() => atualizarStatusOrcamento(orcamento.id)}
+                  onClick={() => aprovarOrcamento(orcamento.id)}
                 >
                   Aprovar orçamento
                 </button>
               ) : (
-                <button className="btn aprovar" type="button">
+                <button
+                  className="btn aprovar"
+                  type="button"
+                  onClick={() => finalizarOrcamento(orcamento.id)}
+                >
                   Finalizar
                 </button>
               )}
