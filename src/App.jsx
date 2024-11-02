@@ -51,6 +51,12 @@ export function App() {
   const fecharModalCliente = () => setShowClienteModal(false);
 
   const abrirModalHorario = () => {
+    if (!cliente.trim() || !telefone) {
+      return toast.error("Preencha os campos para continuar.", {
+        position: "top-center",
+      });
+    }
+
     setShowClienteModal(false);
 
     setShowHorarioModal(true);

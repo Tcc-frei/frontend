@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import "./styles.scss";
 import { api } from "../../service/axios";
 
-import { format } from "date-fns";
+import { format, addHours } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 import { MapPin, User, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -20,7 +22,9 @@ export function ModalVisita({ id, fecharModal, onClick }) {
 
         setVisita(resposta.data);
       } catch (e) {
-        console.error(e);
+        toast.error("Ocorreu um erro ao buscar as visitas.", {
+          position: "top-right",
+        });
       }
     }
 
@@ -55,7 +59,9 @@ export function ModalVisita({ id, fecharModal, onClick }) {
             </div>
 
             <span className="horario">
-              {format(visita.data, "dd/MM 'ás' H:mm")}
+              {format(addHours(new Date(visita.data), +3), "dd/MM 'às' HH:mm", {
+                locale: ptBR,
+              })}
             </span>
           </div>
 
