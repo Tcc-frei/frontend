@@ -7,6 +7,84 @@
 
   .main-content {
     width: 100dvw;
+
+    .feedback-container {
+      position: fixed;
+      bottom: 25px;
+      right: 35px;
+      display: flex;
+      flex-direction: column;
+
+      .feedback {
+        cursor: pointer;
+        border: none;
+
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background-color: #2a2b2e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-end;
+        color: white;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.05);
+
+        .icon-feedback {
+          transform: rotate(90deg);
+          transition: all 0.45s;
+        }
+
+        &:hover {
+          .icon-feedback {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .feedback-input {
+        background-color: #2a2b2e;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          .btn.enviar {
+            width: auto;
+            justify-content: center;
+            background-color: #80ed99;
+            color: black;
+            transition: all 0.2s;
+
+            &:disabled {
+              cursor: not-allowed;
+              background-color: #303136;
+              color: white;
+            }
+          }
+        }
+
+        textarea {
+          resize: none;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          width: 350px;
+          height: 150px;
+
+          &::placeholder {
+            font: 400 13px "Rubik";
+            // color: #1d1d1d;
+          }
+
+          font: 400 14px "Rubik";
+        }
+      }
+    }
   }
 
   .cabecalho {

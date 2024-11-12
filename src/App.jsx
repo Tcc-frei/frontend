@@ -16,6 +16,7 @@ import { Sidebar } from "./components/sidebar/index.jsx";
 import { OrcamentoModal } from "./components/orcamento-modal/index.jsx";
 import { api } from "./service/axios.js";
 import toast from "react-hot-toast";
+import { Settings } from "lucide-react";
 
 export function App() {
   const [visitas, setVisitas] = useState([]);
@@ -24,6 +25,8 @@ export function App() {
   const [showHorarioModal, setShowHorarioModal] = useState(false);
   const [showVisitaModal, setShowVisitaModal] = useState(false);
   const [showOrcamentoModal, setShowOrcamentoModal] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const [idVisitaSelecionada, setIdVisitaSelecionada] = useState(0);
 
@@ -43,6 +46,8 @@ export function App() {
     bairro: "",
     logradouro: "",
   });
+
+  const [feedback, setFeedback] = useState("");
 
   const navigate = useNavigate();
 
@@ -85,6 +90,8 @@ export function App() {
   };
 
   const fecharModalOrcamento = () => setShowOrcamentoModal(false);
+
+  const togglePopup = () => setShowPopup(!showPopup);
 
   async function pegarCEP() {
     setLoadingCEP(true);
@@ -369,6 +376,29 @@ export function App() {
             </div>
           </div>
         </section>
+
+        <div className="feedback-container">
+          {showPopup && (
+            <div className="feedback-input">
+              <form>
+                <textarea
+                  rows={4}
+                  placeholder="Fique a vontade para descrever qualquer sugestão de melhorias ou reportar algum erro encontrado..."
+                  onChange={(e) => setFeedback(e.target.value)}
+                  value={feedback}
+                ></textarea>
+
+                <button disabled={feedback.length <= 10} className="btn enviar">
+                  Enviar
+                </button>
+              </form>
+            </div>
+          )}
+
+          <button className="feedback" onClick={togglePopup}>
+            <Settings className="icon-feedback" />
+          </button>
+        </div>
       </div>
     </main>
   );
