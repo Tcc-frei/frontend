@@ -41,6 +41,7 @@ export function App() {
   const [numeroCasa, setNumeroCasa] = useState("");
 
   const [loadingCEP, setLoadingCEP] = useState(false);
+  const [loadingFeedback, setLoadingFeedback] = useState(false);
 
   const [endereco, setEndereco] = useState({
     bairro: "",
@@ -170,6 +171,7 @@ export function App() {
 
   async function enviarFeedback(e) {
     e.preventDefault();
+    setLoadingFeedback(true);
 
     try {
       const token = localStorage.getItem("usuario");
@@ -195,6 +197,7 @@ export function App() {
       });
     } finally {
       setFeedback("");
+      setLoadingFeedback(false);
     }
   }
 
@@ -425,7 +428,7 @@ export function App() {
                 ></textarea>
 
                 <button
-                  disabled={feedback.length <= 10}
+                  disabled={feedback.length <= 10 || loadingFeedback}
                   className="btn enviar"
                   onClick={enviarFeedback}
                 >
