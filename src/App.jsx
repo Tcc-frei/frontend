@@ -143,6 +143,12 @@ export function App() {
     } finally {
       setShowHorarioModal(false);
       pegarVisitas();
+
+      setCliente("");
+      setTelefone("");
+      setCep("");
+      setEndereco({});
+      setNumeroCasa("");
     }
   }
 
@@ -159,6 +165,36 @@ export function App() {
       toast.error("Ocorreu um ao buscar os agendamentos.", {
         position: "top-right",
       });
+    }
+  }
+
+  async function enviarFeedback(e) {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("usuario");
+
+      await api.post(
+        "/feedback",
+        {
+          conteudo: feedback,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Agradecemos ao seu feedback, retornaremos em breve !", {
+        position: "top-right",
+      });
+    } catch (e) {
+      toast.error("Ocorreu um erro ao enviar seu feedback.", {
+        position: "top-right",
+      });
+    } finally {
+      setFeedback("");
     }
   }
 
@@ -388,7 +424,11 @@ export function App() {
                   value={feedback}
                 ></textarea>
 
-                <button disabled={feedback.length <= 10} className="btn enviar">
+                <button
+                  disabled={feedback.length <= 10}
+                  className="btn enviar"
+                  onClick={enviarFeedback}
+                >
                   Enviar
                 </button>
               </form>

@@ -75,13 +75,9 @@
           outline: none;
           width: 350px;
           height: 150px;
+          color: white;
 
-          &::placeholder {
-            font: 400 13px "Rubik";
-            // color: #1d1d1d;
-          }
-
-          font: 400 14px "Rubik";
+          font: 400 13px "Rubik";
         }
       }
     }
